@@ -2,7 +2,7 @@ package com.failedalgorithm.astronomics.colonies;
 
 import com.failedalgorithm.astronomics.buildings.Building;
 import com.failedalgorithm.astronomics.users.User;
-import com.failedalgorithm.astronomics.zones.Zone;
+import com.failedalgorithm.astronomics.worlds.zones.Zone;
 import jakarta.persistence.*;
 
 import java.util.List;

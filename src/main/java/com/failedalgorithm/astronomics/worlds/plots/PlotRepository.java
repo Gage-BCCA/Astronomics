@@ -1,4 +1,4 @@
-package com.failedalgorithm.astronomics.plots;
+package com.failedalgorithm.astronomics.worlds.plots;
 
 import org.springframework.data.repository.CrudRepository;
 

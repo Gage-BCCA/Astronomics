@@ -2,7 +2,7 @@ package com.failedalgorithm.astronomics.buildings;
 
 
 import com.failedalgorithm.astronomics.buildings.building_types.BuildingType;
-import com.failedalgorithm.astronomics.plots.Plot;
+import com.failedalgorithm.astronomics.worlds.plots.Plot;
 import jakarta.persistence.*;
 import com.failedalgorithm.astronomics.colonies.Colony;
 

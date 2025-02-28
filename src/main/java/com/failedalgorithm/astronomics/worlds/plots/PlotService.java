@@ -1,4 +1,4 @@
-package com.failedalgorithm.astronomics.plots;
+package com.failedalgorithm.astronomics.worlds.plots;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

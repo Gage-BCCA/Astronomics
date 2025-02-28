@@ -44,7 +44,7 @@ public class User {
         return this.credits;
     }
 
-    public UUID getSecret() {
+    public UUID retrieveSecret() {
         return this.secret;
     }
 

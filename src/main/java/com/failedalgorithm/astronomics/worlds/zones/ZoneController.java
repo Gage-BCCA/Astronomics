@@ -1,11 +1,10 @@
-package com.failedalgorithm.astronomics.zones;
+package com.failedalgorithm.astronomics.worlds.zones;
 
-import com.failedalgorithm.astronomics.zones.DTOs.ZoneDetailsDTO;
-import com.failedalgorithm.astronomics.zones.responses.ScanResponse;
+import com.failedalgorithm.astronomics.worlds.zones.DTOs.ZoneSummaryDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,8 +15,14 @@ public class ZoneController {
     ZoneService service;
 
     @GetMapping
-    public Iterable<Zone> getAllZones() {
+    public Iterable<ZoneSummaryDTO> getAllZones() {
         return service.getAllZones();
     }
+
+//    @GetMapping("/scan")
+//    public Zone scanZone(@RequestParam Integer x, @RequestParam Integer y) {
+//        return service.getByCoordinates(x, y);
+//    }
+
 
 }
