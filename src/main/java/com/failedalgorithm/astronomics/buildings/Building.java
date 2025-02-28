@@ -1,16 +1,14 @@
 package com.failedalgorithm.astronomics.buildings;
 
 
-import com.failedalgorithm.astronomics.items.Item;
+import com.failedalgorithm.astronomics.buildings.building_types.BuildingType;
 import com.failedalgorithm.astronomics.plots.Plot;
 import jakarta.persistence.*;
 import com.failedalgorithm.astronomics.colonies.Colony;
 
 @Entity
 @Table(name = "buildings")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="product_type",
-        discriminatorType = DiscriminatorType.STRING)
+
 public class Building {
 
     @Id
@@ -36,7 +34,5 @@ public class Building {
 
     @Column(name = "is_active")
     private boolean isActive;
-
-
 
 }

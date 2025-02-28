@@ -1,17 +1,17 @@
-package com.failedalgorithm.astronomics.buildings;
+package com.failedalgorithm.astronomics.buildings.building_types;
 
 import com.failedalgorithm.astronomics.items.Item;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_name",
+        discriminatorType = DiscriminatorType.STRING)
 public class BuildingType {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "type_name")
-    private String typeName;
 
     @ManyToOne
     @JoinColumn(name = "item_id")
@@ -23,5 +23,6 @@ public class BuildingType {
     private Long foodConsumptionAmt;
     private Long powerConsumptionAmt;
 
+    private Integer craftSpeed;
 
 }

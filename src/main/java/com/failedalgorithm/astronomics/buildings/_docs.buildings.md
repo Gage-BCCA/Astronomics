@@ -10,6 +10,8 @@ any resources to produce an Item.
 All buildings are hosted on a single table. Simple buildings
 do not override any methods of the base Building class.
 
+Uses a discriminator column to determine which child to create
+
 ## Building Types
 The Building Type class is just a container to hold
 building stats. 

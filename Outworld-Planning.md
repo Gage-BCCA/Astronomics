@@ -223,10 +223,6 @@ Produces Power Cells directly
 Advanced buildings still inherit from the building parent class, but overwrite the produce() method. Any building that takes in inputs to create an item
 is considered an advanced building.
 
-## 
-
-
-
 # Item
 A generic item that buildings produce and store
 
@@ -236,3 +232,73 @@ A generic item that buildings produce and store
 	- Type
 	- Unit Size: how much storage it takes up
 
+# Jobs
+All actions generate a job that takes some time.
+
+    - ID
+    - Created At
+    - Time Required
+    - End Time
+    - Job Type
+    - Target Type
+    - Target X_coord
+    - Target Y_coord
+    
+Example:
+    Job:
+        - ID: 1
+        - Time Required: 2 minutes (dynamically generated based on distance and job)
+        - Start time: Creation time
+        - end time: start time + time required
+        - Job type: MOVE RESOURCES
+        - Target Type: Building
+        - Target Type: 001
+        - Target X: 15
+        - Target Y: 25
+        - Job Origin X: 0
+        - Job Origin Y: 0
+    Job_Resources:
+        - Item ID: 15
+        - Job ID: 1
+        - Amt: 250
+
+
+
+Job_type dynamically generates the MoveResources class using the inheritance and 
+discriminator value
+
+```
+Job object - Dynamically assigned the MoveResources Class because the discriminator value
+was MOVE_RESOURCES
+
+private JobType = new MoveResourcesObject(
+    *insert all information*
+)
+```
+```
+MoveResources.java
+public class MoveResources extends JobType:
+
+    @override
+    public void execute() {
+    // get target building via the ID
+    // Make sure that the building has the required resources in the job_items table
+        // fail out if not
+    // Transfer resources from old building to new building
+        // if of course the new building can hold them
+    // change job status to completed 
+    }
+```
+
+```
+ScheduledTask
+
+// iterate every job
+    // if status is COMPLETE, archive
+// Construct job types
+// Call execute
+```
+
+Jobs will be stored in the Jobs table, which will act as a queue. Every few minutes
+the server will iterate this queue, execute the jobs, and archive them in the JobHistory
+table.
