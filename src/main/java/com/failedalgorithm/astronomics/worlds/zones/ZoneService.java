@@ -10,16 +10,19 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ZoneService {
+public class ZoneService
+{
 
     @Autowired
     ZoneRepository repository;
 
-    public Iterable<ZoneSummaryDTO> getAllZones() {
+    public Iterable<ZoneSummaryDTO> getAllZones()
+    {
 
         Iterable<Zone> zones = repository.findAll();
         List<ZoneSummaryDTO> zoneSummaries = new ArrayList<>();
-        for (Zone zone: zones) {
+        for (Zone zone : zones)
+        {
             ZoneSummaryDTO summary = new ZoneSummaryDTO();
 
             summary.setOccupied(zone.isOccupied());

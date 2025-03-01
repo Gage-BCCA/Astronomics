@@ -1,6 +1,6 @@
-package com.failedalgorithm.astronomics.colonies;
+package com.failedalgorithm.astronomics.worlds.colonies;
 
-import com.failedalgorithm.astronomics.buildings.Building;
+import com.failedalgorithm.astronomics.worlds.colonies.buildings.Building;
 import com.failedalgorithm.astronomics.users.User;
 import com.failedalgorithm.astronomics.worlds.zones.Zone;
 import jakarta.persistence.*;
@@ -8,8 +8,9 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table (name = "colonies")
-public class Colony {
+@Table(name = "colonies")
+public class Colony
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

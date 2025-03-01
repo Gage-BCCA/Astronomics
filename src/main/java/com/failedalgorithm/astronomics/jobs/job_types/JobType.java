@@ -7,17 +7,18 @@ import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="job_type",
+@DiscriminatorColumn(name = "job_type",
         discriminatorType = DiscriminatorType.STRING)
-public class JobType {
+public class JobType
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 
-
-    public JobResultResponse execute() {
+    public JobResultResponse execute()
+    {
         return new JobSuccessResponse();
     }
 }

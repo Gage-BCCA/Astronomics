@@ -7,7 +7,8 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "zones")
-public class Zone {
+public class Zone
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +34,12 @@ public class Zone {
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    public Zone () {}
+    public Zone()
+    {
+    }
 
-    public Zone(World world, Integer x, Integer y, ZoneType zoneType, User owner) {
+    public Zone(World world, Integer x, Integer y, ZoneType zoneType, User owner)
+    {
         this.name = world.getName() + "-" + x.toString() + "." + y.toString();
         this.world = world;
         this.xCoord = x;
@@ -46,59 +50,73 @@ public class Zone {
         this.owner = owner;
     }
 
-    public int getZoneMetalChance() {
+    public int getZoneMetalChance()
+    {
         return this.zoneType.fetchMetalChance();
     }
 
-    public int getZoneFertileChance() {
+    public int getZoneFertileChance()
+    {
         return zoneType.fetchFertileChance();
     }
 
-    public int getZoneStoneChance() {
+    public int getZoneStoneChance()
+    {
         return zoneType.fetchStoneChance();
     }
 
-    public int getZoneWoodChance() {
+    public int getZoneWoodChance()
+    {
         return zoneType.fetchWoodChance();
     }
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public int getxCoord() {
+    public int getxCoord()
+    {
         return xCoord;
     }
 
-    public int getyCoord() {
+    public int getyCoord()
+    {
         return yCoord;
     }
 
-    public boolean isOccupied() {
+    public boolean isOccupied()
+    {
         return isOccupied;
     }
 
-    public World getWorld() {
+    public World getWorld()
+    {
         return world;
     }
 
-    public ZoneType getZoneType() {
+    public ZoneType getZoneType()
+    {
         return zoneType;
     }
 
-    public String getOccupiedType() {
+    public String getOccupiedType()
+    {
         return occupiedType;
     }
 
-    public User getOwner() {
+    public User getOwner()
+    {
         return owner;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public String getZoneTypeDescription() {
+    public String getZoneTypeDescription()
+    {
         return this.zoneType.getDescription();
     }
 }

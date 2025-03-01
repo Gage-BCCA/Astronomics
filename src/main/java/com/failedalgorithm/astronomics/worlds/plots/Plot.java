@@ -1,6 +1,6 @@
 package com.failedalgorithm.astronomics.worlds.plots;
 
-import com.failedalgorithm.astronomics.buildings.Building;
+import com.failedalgorithm.astronomics.worlds.colonies.buildings.Building;
 import com.failedalgorithm.astronomics.worlds.zones.Zone;
 import jakarta.persistence.*;
 
@@ -8,7 +8,8 @@ import java.util.Random;
 
 @Entity
 @Table(name = "plots")
-public class Plot {
+public class Plot
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +33,12 @@ public class Plot {
 
     private boolean isOccupied;
 
-    public Plot () {}
+    public Plot()
+    {
+    }
 
-    public Plot(Zone zone, Integer x, Integer y) {
+    public Plot(Zone zone, Integer x, Integer y)
+    {
         this.zone = zone;
         this.x_coord = x;
         this.y_coord = y;

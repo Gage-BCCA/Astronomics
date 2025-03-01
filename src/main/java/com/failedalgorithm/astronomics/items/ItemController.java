@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/items")
-public class ItemController {
+public class ItemController
+{
 
     @Autowired
     ItemService service;
 
     @GetMapping
-    public Iterable<ItemDTO> getAllItems() {
+    public Iterable<ItemDTO> getAllItems()
+    {
         return service.getAllItems();
     }
 

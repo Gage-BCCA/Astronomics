@@ -7,14 +7,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/plots")
-public class PlotController {
+public class PlotController
+{
 
     @Autowired
     PlotService service;
 
     // This needs to be done by Zone id
     @GetMapping
-    public Iterable<Plot> getAllPlots() {
+    public Iterable<Plot> getAllPlots()
+    {
         return service.getAllPlots();
     }
 }

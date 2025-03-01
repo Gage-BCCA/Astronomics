@@ -1,6 +1,7 @@
 package com.failedalgorithm.astronomics.worlds.zones.DTOs;
 
-public class ZoneDetailsDTO {
+public class ZoneDetailsDTO
+{
     private int xCoord;
     private int yCoord;
     private String zoneType;
@@ -11,69 +12,87 @@ public class ZoneDetailsDTO {
     private int plotsWithWood;
     private int plotsWithFertileSoil;
 
-    public int getxCoord() {
+    public int getxCoord()
+    {
         return xCoord;
     }
 
-    public int getyCoord() {
+    public int getyCoord()
+    {
         return yCoord;
     }
 
-    public String getZoneType() {
+    public String getZoneType()
+    {
         return zoneType;
     }
 
-    public boolean isOccupied() {
+    public boolean isOccupied()
+    {
         return isOccupied;
     }
 
-    public int getPlotsWithMetal() {
+    public int getPlotsWithMetal()
+    {
         return plotsWithMetal;
     }
 
-    public int getPlotsWithStone() {
+    public int getPlotsWithStone()
+    {
         return plotsWithStone;
     }
 
-    public int getPlotsWithWood() {
+    public int getPlotsWithWood()
+    {
         return plotsWithWood;
     }
 
-    public int getPlotsWithFertileSoil() {
+    public int getPlotsWithFertileSoil()
+    {
         return plotsWithFertileSoil;
     }
 
-    public void setxCoord(int xCoord) {
+    public void setxCoord(int xCoord)
+    {
         this.xCoord = xCoord;
     }
 
-    public void setyCoord(int yCoord) {
+    public void setyCoord(int yCoord)
+    {
         this.yCoord = yCoord;
     }
 
-    public void setZoneType(String zoneType) {
+    public void setZoneType(String zoneType)
+    {
         this.zoneType = zoneType;
     }
 
-    public void setOccupied(boolean occupied) {
+    public void setOccupied(boolean occupied)
+    {
         isOccupied = occupied;
     }
 
-    public void setPlotsWithMetal(int plotsWithMetal) {
+    public void setPlotsWithMetal(int plotsWithMetal)
+    {
         this.plotsWithMetal = plotsWithMetal;
     }
 
-    public void setPlotsWithStone(int plotsWithStone) {
+    public void setPlotsWithStone(int plotsWithStone)
+    {
         this.plotsWithStone = plotsWithStone;
     }
 
-    public void setPlotsWithWood(int plotsWithWood) {
+    public void setPlotsWithWood(int plotsWithWood)
+    {
         this.plotsWithWood = plotsWithWood;
     }
 
-    public void setPlotsWithFertileSoil(int plotsWithFertileSoil) {
+    public void setPlotsWithFertileSoil(int plotsWithFertileSoil)
+    {
         this.plotsWithFertileSoil = plotsWithFertileSoil;
     }
 
-    public ZoneDetailsDTO() {}
+    public ZoneDetailsDTO()
+    {
+    }
 }

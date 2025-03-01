@@ -2,12 +2,14 @@ package com.failedalgorithm.astronomics.jobs;
 
 import com.failedalgorithm.astronomics.jobs.job_types.JobType;
 import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
+import com.failedalgorithm.astronomics.users.User;
 import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-public class Job {
+public class Job
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +29,12 @@ public class Job {
     private Date jobCreationTime;
     private Date jobCompletionTime;
 
-    public JobResultResponse executeJob(){
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+
+    public JobResultResponse executeJob()
+    {
         return this.jobType.execute();
     }
 }

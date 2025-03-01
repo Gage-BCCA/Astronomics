@@ -9,10 +9,12 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("TEST_JOB")
-public class TestJob extends JobType {
+public class TestJob extends JobType
+{
 
     @Override
-    public JobResultResponse execute() {
+    public JobResultResponse execute()
+    {
         JobResultResponse response = new JobSuccessResponse();
         response.setMessage("Test job executed.");
         return response;

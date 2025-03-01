@@ -9,29 +9,34 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/accounts")
-public class UserController {
+public class UserController
+{
 
     @Autowired
     UserService service;
 
     @PostMapping("/register")
-    public User createNewUser(@RequestBody User user) {
+    public User createNewUser(@RequestBody User user)
+    {
         return service.createNewUser(user);
     }
 
     @GetMapping("/retrieve-all")
-    public Iterable<UserDTO> getAllUsers() {
+    public Iterable<UserDTO> getAllUsers()
+    {
         return service.getAllUsers();
     }
 
     @DeleteMapping("/delete/{id}")
-    public SuccessResponse deleteUserById(@PathVariable Long id) {
+    public SuccessResponse deleteUserById(@PathVariable Long id)
+    {
         service.deleteUserById(id);
         return new SuccessResponse("Test");
     }
 
     @GetMapping
-    public String testingEndpoint() {
+    public String testingEndpoint()
+    {
         return "Yay!";
     }
 

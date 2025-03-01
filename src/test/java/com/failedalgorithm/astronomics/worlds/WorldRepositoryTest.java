@@ -8,16 +8,17 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import com.failedalgorithm.astronomics.worlds.WorldRepository;
 
 @DataJpaTest
-public class WorldRepositoryTest {
+public class WorldRepositoryTest
+{
 
     @Autowired
     private WorldRepository underTest;
 
     @AfterEach
-    void tearDown() {
+    void tearDown()
+    {
         underTest.deleteAll();
     }
-
 
 
 }

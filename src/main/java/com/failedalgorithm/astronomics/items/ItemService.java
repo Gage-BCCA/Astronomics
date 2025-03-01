@@ -8,18 +8,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ItemService {
+public class ItemService
+{
 
     @Autowired
     ItemRepository repository;
 
-    public Iterable<ItemDTO> getAllItems() {
+    public Iterable<ItemDTO> getAllItems()
+    {
 
         Iterable<Item> items = repository.findAll();
         List<ItemDTO> itemDTOs = new ArrayList<>();
-        for (Item item : items) {
+        for (Item item : items)
+        {
             itemDTOs.add(new ItemDTO(
-               item.getItemName(), item.getDescription(), item.getUnitSize()
+                    item.getItemName(), item.getDescription(), item.getUnitSize()
             ));
         }
 

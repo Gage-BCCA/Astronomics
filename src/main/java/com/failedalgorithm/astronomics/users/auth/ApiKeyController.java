@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-public class ApiKeyController {
+public class ApiKeyController
+{
 
     @GetMapping
-    public String testing() {
+    public String testing()
+    {
         return "You've reached the API endpoint!";
     }
 }

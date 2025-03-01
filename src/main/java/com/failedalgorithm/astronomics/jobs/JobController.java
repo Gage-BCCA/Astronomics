@@ -6,18 +6,21 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/jobs")
-public class JobController {
+public class JobController
+{
 
     @Autowired
     JobService service;
 
     @PostMapping("/create")
-    public Job createJob(@RequestBody Job job) {
+    public Job createJob(@RequestBody Job job)
+    {
         return service.createJob(job);
     }
 
     @GetMapping("/execute/{id}")
-    public JobResultResponse executeJob(@PathVariable Long id) {
+    public JobResultResponse executeJob(@PathVariable Long id)
+    {
         return service.executeJob(id);
     }
 }

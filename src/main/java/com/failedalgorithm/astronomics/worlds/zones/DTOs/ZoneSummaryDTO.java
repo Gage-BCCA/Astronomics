@@ -2,7 +2,8 @@ package com.failedalgorithm.astronomics.worlds.zones.DTOs;
 
 import com.failedalgorithm.astronomics.users.User;
 
-public class ZoneSummaryDTO {
+public class ZoneSummaryDTO
+{
     private String name;
     private String description;
     private int xCoord;
@@ -13,67 +14,83 @@ public class ZoneSummaryDTO {
 
     private User owner;
 
-    public int getxCoord() {
+    public int getxCoord()
+    {
         return xCoord;
     }
 
-    public int getyCoord() {
+    public int getyCoord()
+    {
         return yCoord;
     }
 
-    public String getZoneType() {
+    public String getZoneType()
+    {
         return zoneType;
     }
 
-    public boolean isOccupied() {
+    public boolean isOccupied()
+    {
         return isOccupied;
     }
 
-    public void setxCoord(int xCoord) {
+    public void setxCoord(int xCoord)
+    {
         this.xCoord = xCoord;
     }
 
-    public void setyCoord(int yCoord) {
+    public void setyCoord(int yCoord)
+    {
         this.yCoord = yCoord;
     }
 
-    public void setZoneType(String zoneType) {
+    public void setZoneType(String zoneType)
+    {
         this.zoneType = zoneType;
     }
 
-    public void setOccupied(boolean occupied) {
+    public void setOccupied(boolean occupied)
+    {
         isOccupied = occupied;
     }
 
-    public User getOwner() {
+    public User getOwner()
+    {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(User owner)
+    {
         this.owner = owner;
     }
 
-    public String getOccupiedType() {
+    public String getOccupiedType()
+    {
         return occupiedType;
     }
 
-    public void setOccupiedType(String occupiedType) {
+    public void setOccupiedType(String occupiedType)
+    {
         this.occupiedType = occupiedType;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(String description)
+    {
         this.description = description;
     }
 }

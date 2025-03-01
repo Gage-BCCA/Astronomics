@@ -7,7 +7,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "auth_keys")
-public class ApiKey {
+public class ApiKey
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

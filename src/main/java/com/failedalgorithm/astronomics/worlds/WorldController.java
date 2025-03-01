@@ -7,14 +7,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/worlds")
-public class WorldController {
+public class WorldController
+{
 
     @Autowired
     WorldService service;
 
 
     @GetMapping
-    public Iterable<World> getAllWorlds() {
+    public Iterable<World> getAllWorlds()
+    {
         return service.getAllWorlds();
     }
 }

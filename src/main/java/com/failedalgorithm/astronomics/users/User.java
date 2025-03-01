@@ -6,7 +6,8 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Users")
-public class User {
+public class User
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,33 +21,42 @@ public class User {
     private Long credits;
 
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public void setCallsign(String callsign) {
+    public void setCallsign(String callsign)
+    {
         this.callsign = callsign;
     }
 
-    public void setSecret() {
+    public void setSecret()
+    {
         this.secret = UUID.randomUUID();
     }
 
-    public String getName(){
+    public String getName()
+    {
         return this.name;
     }
 
-    public String getCallsign() {
+    public String getCallsign()
+    {
         return this.callsign;
     }
 
-    public Long getCredits() {
+    public Long getCredits()
+    {
         return this.credits;
     }
 
-    public UUID retrieveSecret() {
+    public UUID retrieveSecret()
+    {
         return this.secret;
     }
 
-    public User() {}
+    public User()
+    {
+    }
 }

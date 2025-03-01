@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="type_name",
+@DiscriminatorColumn(name = "type_name",
         discriminatorType = DiscriminatorType.STRING)
-public class ZoneType {
+public class ZoneType
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,25 +21,33 @@ public class ZoneType {
     public int hasStoneChance = 0;
     public int isFertileChance = 0;
 
-    public int fetchMetalChance(){
+    public int fetchMetalChance()
+    {
         return 0;
     }
 
-    public int fetchWoodChance() {
+    public int fetchWoodChance()
+    {
         return 0;
     }
 
-    public int fetchFertileChance() {
+    public int fetchFertileChance()
+    {
         return 0;
     }
 
-    public int fetchStoneChance() {
+    public int fetchStoneChance()
+    {
         return 0;
     }
 
-    public String getName () {return "None"; }
+    public String getName()
+    {
+        return "None";
+    }
 
-    public String getDescription() {
+    public String getDescription()
+    {
         return description;
     }
 }

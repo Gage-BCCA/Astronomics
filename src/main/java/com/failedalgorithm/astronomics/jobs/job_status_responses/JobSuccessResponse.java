@@ -1,13 +1,16 @@
 package com.failedalgorithm.astronomics.jobs.job_status_responses;
 
-public class JobSuccessResponse implements  JobResultResponse {
+public class JobSuccessResponse implements JobResultResponse
+{
     private String message;
 
-    public void setMessage(String message) {
+    public void setMessage(String message)
+    {
         this.message = message;
     }
 
-    public String getMessage() {
+    public String getMessage()
+    {
         return this.message;
     }
 }

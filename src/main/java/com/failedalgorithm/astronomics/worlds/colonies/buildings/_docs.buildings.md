@@ -1,9 +1,11 @@
 # Buildings
+
 All buildings inherit from the buildings parent class.
 
-There are two main types of buildings: simple and advanced. 
+There are two main types of buildings: simple and advanced.
+
 - Simple buildings do not require any inputs or consume
-any resources to produce an Item.
+  any resources to produce an Item.
 - Advanced Buildings do require inputs and do consume resources
   to produce Items
 
@@ -13,5 +15,6 @@ do not override any methods of the base Building class.
 Uses a discriminator column to determine which child to create
 
 ## Building Types
+
 The Building Type class is just a container to hold
 building stats. 

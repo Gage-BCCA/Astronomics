@@ -8,20 +8,26 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class JobService {
+public class JobService
+{
 
     @Autowired
     JobRepository repository;
 
-    public Job createJob(Job job){
+    public Job createJob(Job job)
+    {
         return repository.save(job);
     }
 
-    public JobResultResponse executeJob(Long id) {
+    public JobResultResponse executeJob(Long id)
+    {
         Optional<Job> targetJob = repository.findById(id);
-        if (targetJob.isPresent()) {
+        if (targetJob.isPresent())
+        {
             return targetJob.get().executeJob();
-        } else {
+        }
+        else
+        {
             JobNotFoundResponse response = new JobNotFoundResponse();
             response.setMessage("Error executing job.");
             return response;

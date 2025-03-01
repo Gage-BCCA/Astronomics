@@ -1,9 +1,8 @@
 package com.failedalgorithm.astronomics;
 
 
-import com.failedalgorithm.astronomics.buildings.BuildingRepository;
-import com.failedalgorithm.astronomics.buildings.building_types.BuildingTypeRepository;
-import com.failedalgorithm.astronomics.colonies.ColonyRepository;
+import com.failedalgorithm.astronomics.worlds.colonies.buildings.BuildingRepository;
+import com.failedalgorithm.astronomics.worlds.colonies.ColonyRepository;
 import com.failedalgorithm.astronomics.items.ItemRepository;
 import com.failedalgorithm.astronomics.jobs.JobRepository;
 import com.failedalgorithm.astronomics.users.User;
@@ -25,7 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
-public class DataGenerator {
+public class DataGenerator
+{
 
     @Bean
     CommandLineRunner generateData(
@@ -34,13 +34,14 @@ public class DataGenerator {
             ZoneTypeRepository zoneTypeRepository,
             PlotRepository plotRepository,
             BuildingRepository buildingRepository,
-            BuildingTypeRepository buildingTypeRepository,
             ColonyRepository colonyRepository,
             JobRepository jobRepository,
             ItemRepository itemRepository,
             UserRepository userRepository
-    ) {
-        return args -> {
+    )
+    {
+        return args ->
+        {
             // Create SYSTEM user
             User systemUser = new User();
             systemUser.setName("SYSTEM");
@@ -49,8 +50,10 @@ public class DataGenerator {
             World world = worldRepository.save(new World("Epsilon-8"));
             ZoneType barren = zoneTypeRepository.save(new Barren());
             List<Zone> zones = new ArrayList<>();
-            for (int x = 0; x < 15; x++) {
-                for (int y = 0; y < 15; y++) {
+            for (int x = 0; x < 15; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
                     zones.add(zoneRepository.save(new Zone(
                             world,
                             x,
@@ -62,9 +65,12 @@ public class DataGenerator {
             }
 
             List<Plot> plots = new ArrayList<>();
-            for (Zone zone: zones) {
-                for (int x = 0; x < 25; x++){
-                    for (int y = 0; y < 25; y++) {
+            for (Zone zone : zones)
+            {
+                for (int x = 0; x < 25; x++)
+                {
+                    for (int y = 0; y < 25; y++)
+                    {
                         plots.add(new Plot(zone, x, y));
                     }
                 }

@@ -1,4 +1,5 @@
 # User
+
 Holds information about the actual person playing the game.
 
 	- UUID: Used for authenticating requests
@@ -10,6 +11,7 @@ Holds information about the actual person playing the game.
 	Create new user entry
 
 # World
+
 Base container for the Outerworld instance
 
 	- ID: The identifier
@@ -20,10 +22,10 @@ Base container for the Outerworld instance
 	generate()
 	creates 225 zones that have 100 plots with randomized resources. Create one main DMZ in the middle. Persisted in the database.
 
-
 Worlds will have a 15x15 grid of ```Zones``` that are filled by colonies, markets, etc.
 
 # Zone
+
 Base Container for a specific grid point in a world
 
 	- ID
@@ -40,13 +42,12 @@ Base Container for a specific grid point in a world
 	/zone/scan
 	return a brief summary of the zone and all the plots
 
-
 Zones have a 20x20 grid of indiviual ```Plot``` objects that are utilized by User created colonies
 
 quick note: look up @Supermappedclass and DiscriminatorColumn for Spring API to create child classes based on type
 
-
 # Plot
+
 Plots are individual pieces of land that a colony will use to build, farm, and utilize
 
 	- ID
@@ -59,8 +60,8 @@ Plots are individual pieces of land that a colony will use to build, farm, and u
 	- is_fertile: boolean
 	- is_water: boolean
 
-
 # Colony
+
 Colonies are the main point of interaction that a player will have. Contains generic stats.
 
 	- ID
@@ -92,6 +93,7 @@ Colonies are the main point of interaction that a player will have. Contains gen
 		check if Zone if occupied, occupy zone with player, take name of colony, start with base amount of resources
 
 # Building
+
 Parent class of all building types that will be places on a ```Plot```. Has storage amount.
 
 	- ID
@@ -183,47 +185,55 @@ Parent class of all building types that will be places on a ```Plot```. Has stor
 								2a. return message saying resources gathered
 									2a.a. add message saying if excess resources were wasted
 
-
-The building occupies and overrides any non-relevant resource on the plot. A Mining drill constructed on a 
+The building occupies and overrides any non-relevant resource on the plot. A Mining drill constructed on a
 fertile piece of land that also has wood, will have neither of those resources avialable anymore.
 
-
 quick note: look up @Supermappedclass and DiscriminatorColumn for Spring API to create child classes based on type
-	
 
 ## Mining Drill - Basic Building
+
 Generates raw metal resources for the colony. Has all the props of a building plus:
 
 ## Farm Plot - Basic Building
+
 Generates raw food resources for the colony
 
 ## Logger Camp - Basic Building
+
 Generates raw lumber
 
-## Warehouse 
+## Warehouse
+
 Has lots of storage capacity. Produces nothing.
 
 ## Smelter
+
 Refines metal
 
 ## Woodyard
+
 Refines wood
 
 ## Industrial Kitchen
+
 Refines Food
 
 ## Masonyard
+
 Refines Stone
 
 ## Solar Farm
+
 Produces Power Cells directly
 
-
 # Advanced Buildings
-Advanced buildings still inherit from the building parent class, but overwrite the produce() method. Any building that takes in inputs to create an item
+
+Advanced buildings still inherit from the building parent class, but overwrite the produce() method. Any building that
+takes in inputs to create an item
 is considered an advanced building.
 
 # Item
+
 A generic item that buildings produce and store
 
 	- ID
@@ -233,6 +243,7 @@ A generic item that buildings produce and store
 	- Unit Size: how much storage it takes up
 
 # Jobs
+
 All actions generate a job that takes some time.
 
     - ID
@@ -243,28 +254,26 @@ All actions generate a job that takes some time.
     - Target Type
     - Target X_coord
     - Target Y_coord
-    
+
 Example:
-    Job:
-        - ID: 1
-        - Time Required: 2 minutes (dynamically generated based on distance and job)
-        - Start time: Creation time
-        - end time: start time + time required
-        - Job type: MOVE RESOURCES
-        - Target Type: Building
-        - Target Type: 001
-        - Target X: 15
-        - Target Y: 25
-        - Job Origin X: 0
-        - Job Origin Y: 0
-    Job_Resources:
-        - Item ID: 15
-        - Job ID: 1
-        - Amt: 250
+Job:
+- ID: 1
+- Time Required: 2 minutes (dynamically generated based on distance and job)
+- Start time: Creation time
+- end time: start time + time required
+- Job type: MOVE RESOURCES
+- Target Type: Building
+- Target Type: 001
+- Target X: 15
+- Target Y: 25
+- Job Origin X: 0
+- Job Origin Y: 0
+Job_Resources:
+- Item ID: 15
+- Job ID: 1
+- Amt: 250
 
-
-
-Job_type dynamically generates the MoveResources class using the inheritance and 
+Job_type dynamically generates the MoveResources class using the inheritance and
 discriminator value
 
 ```
@@ -275,6 +284,7 @@ private JobType = new MoveResourcesObject(
     *insert all information*
 )
 ```
+
 ```
 MoveResources.java
 public class MoveResources extends JobType:

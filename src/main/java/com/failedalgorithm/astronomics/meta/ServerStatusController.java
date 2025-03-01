@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/")
-public class ServerStatusController {
+public class ServerStatusController
+{
 
     @GetMapping
-    public StatusResponse getServerStatus() {
+    public StatusResponse getServerStatus()
+    {
         return new StatusResponse("Just a smoke test.");
     }
 }

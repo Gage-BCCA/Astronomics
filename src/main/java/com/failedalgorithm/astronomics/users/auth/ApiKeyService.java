@@ -1,4 +1,5 @@
 package com.failedalgorithm.astronomics.users.auth;
 
-public class ApiKeyService {
+public class ApiKeyService
+{
 }

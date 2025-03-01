@@ -12,22 +12,25 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class UserService {
+public class UserService
+{
 
     @Autowired
     UserRepository repository;
 
-    public User createNewUser(User user) {
+    public User createNewUser(User user)
+    {
         user.setSecret();
         return repository.save(user);
     }
 
-    public Iterable<UserDTO> getAllUsers() {
-        Iterable<User> users=  repository.findAll();
+    public Iterable<UserDTO> getAllUsers()
+    {
+        Iterable<User> users = repository.findAll();
 
         List<UserDTO> userDTOs = new ArrayList<UserDTO>();
 
-        for (User user : users )
+        for (User user : users)
         {
             UserDTO userDTO = new UserDTO(
                     user.getName(),
@@ -41,14 +44,17 @@ public class UserService {
         return userDTOs;
     }
 
-    public void updateName(UUID secret) {
+    public void updateName(UUID secret)
+    {
         Optional<User> targetUser = repository.findBySecret(secret);
-        if (targetUser.isPresent()) {
+        if (targetUser.isPresent())
+        {
 
         }
     }
 
-    public void deleteUserById(Long id) {
+    public void deleteUserById(Long id)
+    {
         repository.deleteById(id);
     }
 }

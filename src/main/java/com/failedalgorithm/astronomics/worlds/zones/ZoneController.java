@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/zones")
-public class ZoneController {
+public class ZoneController
+{
 
     @Autowired
     ZoneService service;
 
     @GetMapping
-    public Iterable<ZoneSummaryDTO> getAllZones() {
+    public Iterable<ZoneSummaryDTO> getAllZones()
+    {
         return service.getAllZones();
     }
 

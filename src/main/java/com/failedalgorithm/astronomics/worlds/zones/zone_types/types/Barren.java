@@ -6,7 +6,8 @@ import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("BARREN")
-public class Barren extends ZoneType {
+public class Barren extends ZoneType
+{
     private String description = "Void of life and resources. Move elsewhere wartender.";
     private String resourcesPresent = "None";
     private String name = "Barren Wasteland";
@@ -17,32 +18,38 @@ public class Barren extends ZoneType {
     private int isFertileChance = 0;
 
     @Override
-    public int fetchMetalChance() {
+    public int fetchMetalChance()
+    {
         return hasMetalChance;
     }
 
     @Override
-    public int fetchFertileChance(){
+    public int fetchFertileChance()
+    {
         return isFertileChance;
     }
 
     @Override
-    public int fetchStoneChance() {
+    public int fetchStoneChance()
+    {
         return hasStoneChance;
     }
 
     @Override
-    public int fetchWoodChance() {
+    public int fetchWoodChance()
+    {
         return hasWoodChance;
     }
 
     @Override
-    public String getName() {
+    public String getName()
+    {
         return this.name;
     }
 
     @Override
-    public String getDescription() {
+    public String getDescription()
+    {
         return this.description;
     }
 }

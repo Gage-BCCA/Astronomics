@@ -1,36 +1,44 @@
 package com.failedalgorithm.astronomics.meta.Responses;
 
-public class StatusResponse {
+public class StatusResponse
+{
 
     private int playersOnline;
     private Long totalCreditsMade;
     private String status;
 
-    public void setPlayersOnline() {
+    public void setPlayersOnline()
+    {
         this.playersOnline = 0;
     }
 
-    public int getPlayersOnline() {
+    public int getPlayersOnline()
+    {
         return this.playersOnline;
     }
 
-    public void setTotalCreditsMade() {
+    public void setTotalCreditsMade()
+    {
         this.totalCreditsMade = 0L;
     }
 
-    public Long getTotalCreditsMade() {
+    public Long getTotalCreditsMade()
+    {
         return this.totalCreditsMade;
     }
 
-    public void setStatus(String message) {
+    public void setStatus(String message)
+    {
         this.status = message;
     }
 
-    public String getStatus() {
+    public String getStatus()
+    {
         return this.status;
     }
 
-    public StatusResponse(String message) {
+    public StatusResponse(String message)
+    {
         this.status = message;
         this.totalCreditsMade = 0L;
         this.playersOnline = 0;

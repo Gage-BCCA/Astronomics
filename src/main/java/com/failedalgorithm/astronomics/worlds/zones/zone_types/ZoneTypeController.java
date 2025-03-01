@@ -1,4 +1,5 @@
 package com.failedalgorithm.astronomics.worlds.zones.zone_types;
 
-public class ZoneTypeController {
+public class ZoneTypeController
+{
 }
