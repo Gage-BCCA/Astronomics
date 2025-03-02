@@ -1,8 +1,7 @@
 package com.failedalgorithm.astronomics.worlds.colonies.buildings;
 
 
-import com.failedalgorithm.astronomics.worlds.colonies.buildings.building_types.BuildingType;
-import com.failedalgorithm.astronomics.worlds.plots.Plot;
+import com.failedalgorithm.astronomics.users.User;
 import jakarta.persistence.*;
 import com.failedalgorithm.astronomics.worlds.colonies.Colony;
 
@@ -22,11 +21,13 @@ public class Building
     @JoinColumn(name = "colony_id")
     private Colony colony;
 
-    private String buildingIdentifier;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
     private boolean isBuilt;
-
     private boolean isActive;
+    private String buildingIdentifier;
 
     public Building()
     {
@@ -80,5 +81,10 @@ public class Building
     public void setActive(boolean active)
     {
         isActive = active;
+    }
+
+    public String getBuildingType()
+    {
+        return "Default";
     }
 }

@@ -20,7 +20,6 @@ public class UserService
 
     public User createNewUser(User user)
     {
-        user.setSecret();
         return repository.save(user);
     }
 
@@ -46,11 +45,6 @@ public class UserService
 
     public void updateName(UUID secret)
     {
-        Optional<User> targetUser = repository.findBySecret(secret);
-        if (targetUser.isPresent())
-        {
-
-        }
     }
 
     public void deleteUserById(Long id)

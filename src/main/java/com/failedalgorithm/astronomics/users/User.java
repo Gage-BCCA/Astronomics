@@ -2,6 +2,8 @@ package com.failedalgorithm.astronomics.users;
 
 import jakarta.persistence.*;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.UUID;
 
 @Entity
@@ -13,17 +15,33 @@ public class User
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private UUID secret;
-
     private String name;
     private String callsign;
-
     private Long credits;
 
+
+    public User()
+    {
+    }
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
 
     public void setName(String name)
     {
         this.name = name;
+    }
+
+    public String getCallsign()
+    {
+        return callsign;
     }
 
     public void setCallsign(String callsign)
@@ -31,32 +49,13 @@ public class User
         this.callsign = callsign;
     }
 
-    public void setSecret()
-    {
-        this.secret = UUID.randomUUID();
-    }
-
-    public String getName()
-    {
-        return this.name;
-    }
-
-    public String getCallsign()
-    {
-        return this.callsign;
-    }
-
     public Long getCredits()
     {
-        return this.credits;
+        return credits;
     }
 
-    public UUID retrieveSecret()
+    public void setCredits(Long credits)
     {
-        return this.secret;
-    }
-
-    public User()
-    {
+        this.credits = credits;
     }
 }

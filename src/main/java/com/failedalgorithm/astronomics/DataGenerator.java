@@ -1,6 +1,8 @@
 package com.failedalgorithm.astronomics;
 
 
+import com.failedalgorithm.astronomics.users.auth.ApiKey;
+import com.failedalgorithm.astronomics.users.auth.ApiKeyRepository;
 import com.failedalgorithm.astronomics.worlds.colonies.buildings.BuildingRepository;
 import com.failedalgorithm.astronomics.worlds.colonies.ColonyRepository;
 import com.failedalgorithm.astronomics.items.ItemRepository;
@@ -37,7 +39,8 @@ public class DataGenerator
             ColonyRepository colonyRepository,
             JobRepository jobRepository,
             ItemRepository itemRepository,
-            UserRepository userRepository
+            UserRepository userRepository,
+            ApiKeyRepository apiKeyRepository
     )
     {
         return args ->
@@ -46,6 +49,10 @@ public class DataGenerator
             User systemUser = new User();
             systemUser.setName("SYSTEM");
             userRepository.save(systemUser);
+
+           ApiKey apiKey = new ApiKey()
+            {
+            }
 
             World world = worldRepository.save(new World("Epsilon-8"));
             ZoneType barren = zoneTypeRepository.save(new Barren());

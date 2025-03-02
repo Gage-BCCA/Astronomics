@@ -15,10 +15,19 @@ public class ApiKey
     private Long id;
 
     @Column(name = "key")
-    private UUID key;
+    private String key;
 
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    public ApiKey()
+    {
+        this.key = UUID.randomUUID().toString();
+    }
+
+    public User getUser()
+    {
+        return user;
+    }
 }
