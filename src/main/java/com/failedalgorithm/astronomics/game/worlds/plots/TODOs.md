@@ -1,0 +1,2 @@
+- Implement more Plot types
+- Add DTOs and more GET operations

@@ -1,0 +1,17 @@
+- Create Colony DTOs
+   - One for details, one for summary (Owner and NonOwner)
+   - Implement summary DTOs when owner is not requester
+   - Remove @Jsonignores on Colony object and instead return DTOs
+- Implement Generic ColonyResponse Interface
+- Implement checks for:
+  - Colony creation
+    - Making sure plot is not occupied
+    - making sure user does not already own a colony
+  - Colony Update
+    - Making sure requester is the owner
+  - Colony delete
+    - Making sure requester is owner
+  - Colony Read
+    - Return a detailed or summary response based on is requester is owner or non-owner
+- Style classes with section headers
+- 

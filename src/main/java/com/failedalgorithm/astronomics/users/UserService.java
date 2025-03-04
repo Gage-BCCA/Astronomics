@@ -3,6 +3,7 @@ package com.failedalgorithm.astronomics.users;
 import com.failedalgorithm.astronomics.users.DTOs.UserDTO;
 import com.failedalgorithm.astronomics.users.responses.SuccessResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -50,5 +51,15 @@ public class UserService
     public void deleteUserById(Long id)
     {
         repository.deleteById(id);
+    }
+
+    public User getById(Long id)
+    {
+        Optional<User> userQuery = repository.findById(id);
+        if (userQuery.isPresent())
+        {
+            return userQuery.get();
+        }
+        return null;
     }
 }

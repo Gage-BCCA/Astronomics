@@ -1,0 +1,5 @@
+- Create a few extra job types to be consumed by buildings
+- Implement CRUD operations
+- Research scheduled tasks for Spring
+  - A scheduled task will be implemented to periodically scan the job_queue, run the jobs, and archive them
+- Style classes with section headers

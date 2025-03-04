@@ -1,0 +1,4 @@
+- Implement DTOs
+- Implement CRUD on service layer to be consumed by other entities
+- Implement GET operations on Controller
+  - Summary and Details

@@ -1,6 +1,6 @@
 package com.failedalgorithm.astronomics.jobs;
 
-import com.failedalgorithm.astronomics.jobs.job_types.JobType;
+import com.failedalgorithm.astronomics.jobs.types.JobType;
 import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
 import com.failedalgorithm.astronomics.users.User;
 import jakarta.persistence.*;

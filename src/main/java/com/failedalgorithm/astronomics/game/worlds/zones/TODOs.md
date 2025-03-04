@@ -1,0 +1,3 @@
+- Unfuck the ZoneDTO and Zone responses
+- Unfuck the Zone table and serialization
+  - Use DTOs instead of transient
