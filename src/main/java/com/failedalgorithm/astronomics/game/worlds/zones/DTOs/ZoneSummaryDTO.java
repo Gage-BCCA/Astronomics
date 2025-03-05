@@ -24,11 +24,9 @@ public class ZoneSummaryDTO
     public ZoneSummaryDTO(Zone zone)
     {
 
-        this.isOccupied = zone.isOccupied();
         this.name = zone.getName();
         this.x = zone.getX();
         this.y = zone.getY();
-        this.occupiedType = zone.getOccupiedType();
         this.owner = zone.getOwner();
         this.description = zone.getDescription();
     }

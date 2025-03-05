@@ -4,6 +4,7 @@ import com.failedalgorithm.astronomics.users.User;
 
 public class BuildingCreationRequest
 {
+
     private String buildingType;
     private String buildingIdentifier;
 
@@ -36,51 +37,63 @@ public class BuildingCreationRequest
         this.buildingIdentifier = buildingIdentifier;
     }
 
-    public String getColonyId() {
+    public String getColonyId()
+    {
         return colonyId;
     }
 
-    public void setColonyId(String colonyId) {
+    public void setColonyId(String colonyId)
+    {
         this.colonyId = colonyId;
     }
 
-    public int getZoneX() {
+    public int getZoneX()
+    {
         return zoneX;
     }
 
-    public void setZoneX(int zoneX) {
+    public void setZoneX(int zoneX)
+    {
         this.zoneX = zoneX;
     }
 
-    public int getZoneY() {
+    public int getZoneY()
+    {
         return zoneY;
     }
 
-    public void setZoneY(int zoneY) {
+    public void setZoneY(int zoneY)
+    {
         this.zoneY = zoneY;
     }
 
-    public int getPlotX() {
+    public int getPlotX()
+    {
         return plotX;
     }
 
-    public void setPlotX(int plotX) {
+    public void setPlotX(int plotX)
+    {
         this.plotX = plotX;
     }
 
-    public int getPlotY() {
+    public int getPlotY()
+    {
         return plotY;
     }
 
-    public void setPlotY(int plotY) {
+    public void setPlotY(int plotY)
+    {
         this.plotY = plotY;
     }
 
-    public Long getUserId() {
+    public Long getUserId()
+    {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Long userId)
+    {
         this.userId = userId;
     }
 }

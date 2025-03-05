@@ -65,7 +65,7 @@ public class ColonyService
 
     public ColonyReadResponse getIndividualColony(ColonyReadRequest request)
     {
-        Optional<Colony> colonyQuery = repository.findByName(request.getColonyName());
+        Optional<Colony> colonyQuery = repository.findByColonyName(request.getColonyName());
         if (colonyQuery.isEmpty())
         {
             return new ColonyReadFailedResponse("Failed", "Colony not found.");
@@ -124,7 +124,7 @@ public class ColonyService
     //-----------------------------------------
     public ColonyUpdateResponse updateColony(ColonyUpdateRequest request)
     {
-        Optional<Colony> targetColony = repository.findByName(request.getColonyName());
+        Optional<Colony> targetColony = repository.findByColonyName(request.getColonyName());
         if (targetColony.isEmpty())
         {
             return new ColonyUpdateFailedResponse("Failed", "Colony not found");
@@ -146,7 +146,7 @@ public class ColonyService
     //-----------------------------------------
     public ColonyDeleteResponse deleteColony(ColonyDeleteRequest request)
     {
-        Optional<Colony> colonyQuery = repository.findByName(request.getColonyName());
+        Optional<Colony> colonyQuery = repository.findByColonyName(request.getColonyName());
         if (colonyQuery.isEmpty())
         {
             return new ColonyDeleteFailedResponse("Failed", "Could not find colony");
