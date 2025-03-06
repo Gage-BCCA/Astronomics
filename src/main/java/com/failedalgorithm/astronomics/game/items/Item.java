@@ -8,7 +8,9 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "items")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "item_type",
+        discriminatorType = DiscriminatorType.STRING)
 public class Item
 {
 
@@ -16,24 +18,18 @@ public class Item
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String itemName;
+    @Transient
     private String description;
 
-    private Integer baseValue;
+    @Transient
+    private int baseValue;
 
+    @Transient
     private Integer unitSize;
-
-    @OneToOne
-    @JoinColumn(name = "item_type")
-    private ItemType itemType;
 
     @OneToMany(mappedBy = "item")
     private Set<BuildingStorage> itemsInStorage;
 
-    public String getItemName()
-    {
-        return this.itemName;
-    }
 
     public Integer getUnitSize()
     {
@@ -55,15 +51,16 @@ public class Item
         this.baseValue = baseValue;
     }
 
-    public void setItemName(String itemName)
-    {
-        this.itemName = itemName;
-    }
-
     public void setUnitSize(Integer unitSize)
     {
         this.unitSize = unitSize;
     }
+
+    public String getItemName()
+    {
+        return "";
+    }
+
 
 
 }

@@ -5,8 +5,8 @@ import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("COMMAND_CENTER")
-public class CommandCenter extends Building
+@DiscriminatorValue("INDUSTRIAL_STONECUTTER")
+public class IndustrialStonecutter extends Building
 {
 
     //================================================================================
@@ -19,7 +19,7 @@ public class CommandCenter extends Building
     //================================================================================
     // Constructor
     //================================================================================
-    public CommandCenter()
+    public IndustrialStonecutter()
     {
     }
 
@@ -40,13 +40,13 @@ public class CommandCenter extends Building
     @Override
     public void setCraftSpeed()
     {
-        this.craftSpeed = 0.0f;
+        this.craftSpeed = 1.0f;
     }
 
     @Override
     public void setMaxStorage()
     {
-        this.maxStorage = 10000;
+        this.maxStorage = 1000;
     }
 
     @Override
@@ -74,7 +74,7 @@ public class CommandCenter extends Building
     @Override
     public String getBuildingType()
     {
-        return "Command Center";
+        return "Industrial Stonecutter";
     }
 
 }

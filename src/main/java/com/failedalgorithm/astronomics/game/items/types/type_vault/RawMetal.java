@@ -1,13 +1,40 @@
 package com.failedalgorithm.astronomics.game.items.types.type_vault;
 
-import com.failedalgorithm.astronomics.game.items.types.ItemType;
-import jakarta.persistence.*;
+import com.failedalgorithm.astronomics.game.buildings.Building;
+import com.failedalgorithm.astronomics.game.items.Item;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("RAW_METAL")
-public class RawMetal extends ItemType
+public class RawMetal extends Item
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    //================================================================================
+    // Properties
+    //================================================================================
+    private int baseValue;
+    private int unitSize;
+    private String description;
+
+
+    //================================================================================
+    // Constructor
+    //================================================================================
+    public RawMetal()
+    {
+    }
+
+    
+    //================================================================================
+    // Overridden Methods for Item Config
+    //================================================================================
+
+
+    
+    //================================================================================
+    // Overridden Accessors
+    //================================================================================
+
+    
 }

@@ -1,6 +1,0 @@
-DROP TABLE IF EXISTS worlds;
-
-CREATE TABLE worlds (
-    id SERIAL PRIMARY KEY,
-    name TEXT
-);

@@ -30,6 +30,9 @@ import java.util.Optional;
 public class BuildingService
 {
 
+    //================================================================================
+    // Injected Services
+    //================================================================================
     @Autowired
     BuildingRepository repository;
 
@@ -48,6 +51,13 @@ public class BuildingService
     @Autowired
     ColonyRepository colonyRepository;
 
+
+    //================================================================================
+    // Services
+    //================================================================================
+
+    //region Getters
+    //-----------------------------------------
     public BuildingResponse getBuildingById(Long id)
     {
         Optional<Building> buildingQuery = repository.findById(id);
@@ -69,7 +79,11 @@ public class BuildingService
 
         return buildingDTOs;
     }
+    //-----------------------------------------
+    //endregion
 
+    //region Creators
+    //-----------------------------------------
     public BuildingResponse createBuilding(BuildingCreationRequest request)
     {
         Optional<Zone> zoneQuery = zoneRepository.findByCoordinates(request.getZoneX(), request.getZoneY());
@@ -136,9 +150,15 @@ public class BuildingService
         newBuilding.setZone(zone);
         newBuilding.setPlot(plot);
         newBuilding.setOwner(user);
+        newBuilding.setBuilt(true);
+        newBuilding.setActive(true);
         return repository.save(newBuilding);
     }
+    //-----------------------------------------
+    //endregion
 
+    //region Deleters
+    //-----------------------------------------
     public BuildingResponse deleteBuildingById(BuildingDeleteRequest request)
     {
         Optional<Building> buildingQuery = repository.findById(request.getBuildingId());
@@ -149,7 +169,11 @@ public class BuildingService
         repository.delete(buildingQuery.get());
         return new BuildingDeletedResponse();
     }
+    //-----------------------------------------
+    //endregion
 
+    //region Updaters
+    //-----------------------------------------
     public BuildingResponse updateBuildingById(BuildingUpdateRequest request)
     {
         Optional<Building> buildingQuery = repository.findById(request.getBuildingId());
@@ -162,7 +186,11 @@ public class BuildingService
         repository.save(building);
         return new BuildingUpdatedResponse();
     }
+    //-----------------------------------------
+    //endregion
 
+    //region Interactions
+    //-----------------------------------------
     public BuildingResponse invokeProduction(BuildingProduceRequest request)
     {
         Optional<Building> buildingQuery = repository.findById(request.getBuildingId());
@@ -174,5 +202,7 @@ public class BuildingService
         Long resourcesGathered = building.produce();
         return new BuildingProductionInvokedResponse(resourcesGathered);
     }
+    //-----------------------------------------
+    //endregion
 
 }

@@ -43,7 +43,10 @@ public class Building
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedTimestamp;
 
+    @Transient
     private float craftSpeed;
+
+    @Transient
     private int maxStorage;
 
     //------------------------------------------
