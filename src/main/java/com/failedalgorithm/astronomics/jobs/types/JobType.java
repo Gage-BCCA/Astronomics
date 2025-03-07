@@ -6,9 +6,7 @@ import com.failedalgorithm.astronomics.jobs.job_status_responses.JobSuccessRespo
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "job_type",
-        discriminatorType = DiscriminatorType.STRING)
+
 public class JobType
 {
 

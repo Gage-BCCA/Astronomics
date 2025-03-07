@@ -1,7 +1,10 @@
 package com.failedalgorithm.astronomics.jobs;
 
+import com.failedalgorithm.astronomics.jobs.job_queue.JobQueueRepository;
 import com.failedalgorithm.astronomics.jobs.job_status_responses.JobNotFoundResponse;
 import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
+import com.failedalgorithm.astronomics.jobs.requests.JobCreationRequest;
+import com.failedalgorithm.astronomics.jobs.types.JobFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +17,15 @@ public class JobService
     @Autowired
     JobRepository repository;
 
-    public Job createJob(Job job)
+    @Autowired
+    JobQueueRepository jobQueueRepository;
+
+    @Autowired
+    JobFactory factory;
+
+    public Job createJob(JobCreationRequest request)
     {
+        Job job = factory.createJobClass(request.getJobType());
         return repository.save(job);
     }
 

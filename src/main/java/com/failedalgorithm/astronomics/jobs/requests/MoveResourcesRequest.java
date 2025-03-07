@@ -1,29 +1,15 @@
-package com.failedalgorithm.astronomics.jobs;
+package com.failedalgorithm.astronomics.jobs.requests;
 
-import com.failedalgorithm.astronomics.jobs.types.JobType;
-import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
-import com.failedalgorithm.astronomics.users.User;
-import jakarta.persistence.*;
+import java.util.HashMap;
 
-import java.util.Date;
 
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "job_type",
-        discriminatorType = DiscriminatorType.STRING)
-public class Job
+public class MoveResourcesRequest extends JobCreationRequest
 {
-
     //================================================================================
     // Properties
     //================================================================================
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String status;
-    private String targetType;
-    private String targetId;
+    private String jobType;
+    private HashMap<String, Integer> resourcesBeingMoved;
     private int targetZoneX;
     private int targetZoneY;
     private int targetPlotX;
@@ -32,88 +18,39 @@ public class Job
     private int jobOriginZoneY;
     private int jobOriginPlotX;
     private int jobOriginPlotY;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date jobCreationTime;
-
-    private Date jobCompletionTime;
-
-    @Transient
     private int jobTimeInSeconds;
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    private User owner;
+    //================================================================================
+    // Constructors
+    //================================================================================
+    public MoveResourcesRequest() {}
 
 
     //================================================================================
-    // Constructor
+    // Overridden Methods
     //================================================================================
-    public Job()
+    @Override
+    public String getJobType()
     {
-    }
-
-
-    //================================================================================
-    // Methods to be Overridden
-    //================================================================================
-    public JobResultResponse executeJob()
-    {
-        return null;
-    }
-
-    public int getJobTimeInSeconds()
-    {
-        return jobTimeInSeconds;
-    }
-
-    public void setJobTimeInSeconds(int jobTimeInSeconds)
-    {
-        this.jobTimeInSeconds = jobTimeInSeconds;
+        return this.jobType;
     }
 
     //================================================================================
     // Accessors
     //================================================================================
-
-    public Long getId()
+    public HashMap<String, Integer> getResourcesBeingMoved()
     {
-        return id;
+        return resourcesBeingMoved;
     }
 
-    public void setId(Long id)
+    public void setResourcesBeingMoved(HashMap<String, Integer> resourcesBeingMoved)
     {
-        this.id = id;
+        this.resourcesBeingMoved = resourcesBeingMoved;
     }
 
-    public String getStatus()
+    public void setJobType(String jobType)
     {
-        return status;
-    }
-
-    public void setStatus(String status)
-    {
-        this.status = status;
-    }
-
-    public String getTargetType()
-    {
-        return targetType;
-    }
-
-    public void setTargetType(String targetType)
-    {
-        this.targetType = targetType;
-    }
-
-    public String getTargetId()
-    {
-        return targetId;
-    }
-
-    public void setTargetId(String targetId)
-    {
-        this.targetId = targetId;
+        this.jobType = jobType;
     }
 
     public int getTargetZoneX()
@@ -196,33 +133,13 @@ public class Job
         this.jobOriginPlotY = jobOriginPlotY;
     }
 
-    public Date getJobCreationTime()
+    public int getJobTimeInSeconds()
     {
-        return jobCreationTime;
+        return jobTimeInSeconds;
     }
 
-    public void setJobCreationTime(Date jobCreationTime)
+    public void setJobTimeInSeconds(int jobTimeInSeconds)
     {
-        this.jobCreationTime = jobCreationTime;
-    }
-
-    public Date getJobCompletionTime()
-    {
-        return jobCompletionTime;
-    }
-
-    public void setJobCompletionTime(Date jobCompletionTime)
-    {
-        this.jobCompletionTime = jobCompletionTime;
-    }
-
-    public User getOwner()
-    {
-        return owner;
-    }
-
-    public void setOwner(User owner)
-    {
-        this.owner = owner;
+        this.jobTimeInSeconds = jobTimeInSeconds;
     }
 }
