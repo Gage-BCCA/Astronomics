@@ -49,6 +49,9 @@ public class Building
     @Transient
     private int maxStorage;
 
+    @Transient
+    private int maxProductionRun;
+
     //------------------------------------------
     //endregion
 
@@ -126,6 +129,31 @@ public class Building
     public void setItem()
     {
         this.item = null;
+    }
+
+    public void setCraftSpeed(float craftSpeed)
+    {
+        this.craftSpeed = craftSpeed;
+    }
+
+    public void setMaxStorage(int maxStorage)
+    {
+        this.maxStorage = maxStorage;
+    }
+
+    public int getMaxProductionRun()
+    {
+        return maxProductionRun;
+    }
+
+    public void setMaxProductionRun(int maxProductionRun)
+    {
+        this.maxProductionRun = maxProductionRun;
+    }
+
+    public void setItem(Item item)
+    {
+        this.item = item;
     }
 
     //================================================================================

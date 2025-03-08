@@ -27,9 +27,26 @@ public class Item
     @Transient
     private Integer unitSize;
 
-    @OneToMany(mappedBy = "item")
-    private Set<BuildingStorage> itemsInStorage;
 
+    public Long getId()
+    {
+        return id;
+    }
+
+    public void setId(Long id)
+    {
+        this.id = id;
+    }
+
+    public int getBaseValue()
+    {
+        return baseValue;
+    }
+
+    public void setBaseValue(int baseValue)
+    {
+        this.baseValue = baseValue;
+    }
 
     public Integer getUnitSize()
     {

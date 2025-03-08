@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class JobCreationRequest
 {
+    private Long userId;
     private String jobType;
     private int targetZoneX;
     private int targetZoneY;
@@ -18,6 +19,17 @@ public class JobCreationRequest
     private Map<String, Integer> resources;
 
     public JobCreationRequest () {}
+
+
+    public Long getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(Long userId)
+    {
+        this.userId = userId;
+    }
 
     public String getJobType()
     {

@@ -1,5 +1,7 @@
 package com.failedalgorithm.astronomics.jobs;
 
+import com.failedalgorithm.astronomics.jobs.job_queue.JobQueue;
+import com.failedalgorithm.astronomics.jobs.job_queue.JobQueueRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +16,7 @@ public class JobScannerTask
 {
 
     @Autowired
-    JobRepository repository;
+    JobQueueRepository repository;
 
     private static final Logger log = LoggerFactory.getLogger(JobScannerTask.class);
 
@@ -22,9 +24,9 @@ public class JobScannerTask
 
     @Scheduled(fixedRate = 5000)
     public void reportCurrentTime() {
-        Iterable<Job> jobs = repository.findAll();
+        Iterable<JobQueue> jobs = repository.findAll();
         int counter = 0;
-        for (Job job : jobs)
+        for (JobQueue job : jobs)
         {
             counter += 1;
         }

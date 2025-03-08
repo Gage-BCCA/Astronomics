@@ -1,5 +1,8 @@
 package com.failedalgorithm.astronomics.jobs;
 
+import com.failedalgorithm.astronomics.game.buildings.Building;
+import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
+import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
 import com.failedalgorithm.astronomics.jobs.types.JobType;
 import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
 import com.failedalgorithm.astronomics.users.User;
@@ -22,16 +25,24 @@ public class Job
     private Long id;
 
     private String status;
-    private String targetType;
-    private String targetId;
-    private int targetZoneX;
-    private int targetZoneY;
-    private int targetPlotX;
-    private int targetPlotY;
-    private int jobOriginZoneX;
-    private int jobOriginZoneY;
-    private int jobOriginPlotX;
-    private int jobOriginPlotY;
+
+    @ManyToOne
+    private Zone targetZone;
+
+    @ManyToOne
+    private Plot targetPlot;
+
+    @ManyToOne
+    private Zone originZone;
+
+    @ManyToOne
+    private Plot originPlot;
+
+    @ManyToOne
+    private Building originBuilding;
+
+    @ManyToOne
+    private Building targetBuilding;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date jobCreationTime;
@@ -96,104 +107,44 @@ public class Job
         this.status = status;
     }
 
-    public String getTargetType()
+    public Zone getTargetZone()
     {
-        return targetType;
+        return targetZone;
     }
 
-    public void setTargetType(String targetType)
+    public void setTargetZone(Zone targetZone)
     {
-        this.targetType = targetType;
+        this.targetZone = targetZone;
     }
 
-    public String getTargetId()
+    public Plot getTargetPlot()
     {
-        return targetId;
+        return targetPlot;
     }
 
-    public void setTargetId(String targetId)
+    public void setTargetPlot(Plot targetPlot)
     {
-        this.targetId = targetId;
+        this.targetPlot = targetPlot;
     }
 
-    public int getTargetZoneX()
+    public Zone getOriginZone()
     {
-        return targetZoneX;
+        return originZone;
     }
 
-    public void setTargetZoneX(int targetZoneX)
+    public void setOriginZone(Zone originZone)
     {
-        this.targetZoneX = targetZoneX;
+        this.originZone = originZone;
     }
 
-    public int getTargetZoneY()
+    public Plot getOriginPlot()
     {
-        return targetZoneY;
+        return originPlot;
     }
 
-    public void setTargetZoneY(int targetZoneY)
+    public void setOriginPlot(Plot originPlot)
     {
-        this.targetZoneY = targetZoneY;
-    }
-
-    public int getTargetPlotX()
-    {
-        return targetPlotX;
-    }
-
-    public void setTargetPlotX(int targetPlotX)
-    {
-        this.targetPlotX = targetPlotX;
-    }
-
-    public int getTargetPlotY()
-    {
-        return targetPlotY;
-    }
-
-    public void setTargetPlotY(int targetPlotY)
-    {
-        this.targetPlotY = targetPlotY;
-    }
-
-    public int getJobOriginZoneX()
-    {
-        return jobOriginZoneX;
-    }
-
-    public void setJobOriginZoneX(int jobOriginZoneX)
-    {
-        this.jobOriginZoneX = jobOriginZoneX;
-    }
-
-    public int getJobOriginZoneY()
-    {
-        return jobOriginZoneY;
-    }
-
-    public void setJobOriginZoneY(int jobOriginZoneY)
-    {
-        this.jobOriginZoneY = jobOriginZoneY;
-    }
-
-    public int getJobOriginPlotX()
-    {
-        return jobOriginPlotX;
-    }
-
-    public void setJobOriginPlotX(int jobOriginPlotX)
-    {
-        this.jobOriginPlotX = jobOriginPlotX;
-    }
-
-    public int getJobOriginPlotY()
-    {
-        return jobOriginPlotY;
-    }
-
-    public void setJobOriginPlotY(int jobOriginPlotY)
-    {
-        this.jobOriginPlotY = jobOriginPlotY;
+        this.originPlot = originPlot;
     }
 
     public Date getJobCreationTime()
@@ -224,5 +175,25 @@ public class Job
     public void setOwner(User owner)
     {
         this.owner = owner;
+    }
+
+    public Building getTargetBuilding()
+    {
+        return targetBuilding;
+    }
+
+    public void setTargetBuilding(Building targetBuilding)
+    {
+        this.targetBuilding = targetBuilding;
+    }
+
+    public Building getOriginBuilding()
+    {
+        return originBuilding;
+    }
+
+    public void setOriginBuilding(Building originBuilding)
+    {
+        this.originBuilding = originBuilding;
     }
 }

@@ -1,6 +1,7 @@
 package com.failedalgorithm.astronomics;
 
 
+import com.failedalgorithm.astronomics.game.items.Item;
 import com.failedalgorithm.astronomics.users.auth.ApiKey;
 import com.failedalgorithm.astronomics.users.auth.ApiKeyRepository;
 import com.failedalgorithm.astronomics.game.buildings.BuildingRepository;
@@ -19,6 +20,7 @@ import com.failedalgorithm.astronomics.game.worlds.zones.types.ZoneTypeFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import com.failedalgorithm.astronomics.game.items.types.type_vault.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,6 +83,14 @@ public class DataGenerator {
                 }
             }
             plotRepository.saveAll(plots);
+
+            Item basicMetal = new RawMetal();
+            Item basicWood = new RawWood();
+            Item basicStone = new RawStone();
+            itemRepository.save(basicStone);
+            itemRepository.save(basicWood);
+            itemRepository.save(basicMetal);
+
         };
 
     }

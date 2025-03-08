@@ -3,6 +3,9 @@ package com.failedalgorithm.astronomics.jobs.types.type_vault;
 import com.failedalgorithm.astronomics.game.items.Item;
 import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
 import com.failedalgorithm.astronomics.jobs.Job;
+import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
+import com.failedalgorithm.astronomics.jobs.job_status_responses.JobSuccessResponse;
+import com.failedalgorithm.astronomics.jobs.requests.JobCreationRequest;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Transient;
@@ -21,7 +24,7 @@ public class MoveResources extends Job
     // Properties
     //================================================================================
     @Transient
-    private HashMap<String, Integer> resourcesBeingMoved;
+    private Map<String, Integer> resources;
 
     private int jobTimeInSeconds;
 
@@ -30,19 +33,16 @@ public class MoveResources extends Job
     //================================================================================
     public MoveResources() {}
 
-    public MoveResources(HashMap<String, Integer> resourcesBeingMoved,
-                         Plot origin,
-                         Plot target)
+
+    //================================================================================
+    // Job Execution
+    //================================================================================
+    @Override
+    public JobResultResponse executeJob()
     {
-        this.resourcesBeingMoved = resourcesBeingMoved;
-
-        int counter = 0;
-        for (Integer value : resourcesBeingMoved.values())
-        {
-            counter += value / 2;
-        }
-
-        this.jobTimeInSeconds = counter;
+        JobSuccessResponse response = new JobSuccessResponse();
+        response.setMessage("Move Resources executed.");
+        return response;
     }
 
     //================================================================================
@@ -64,13 +64,13 @@ public class MoveResources extends Job
     //================================================================================
     // Accessors
     //================================================================================
-    public HashMap<String, Integer> getResourcesBeingMoved()
+    public void setResources(Map<String, Integer> resources)
     {
-        return resourcesBeingMoved;
+        this.resources = resources;
     }
 
-    public void setResourcesBeingMoved(HashMap<String, Integer> resourcesBeingMoved)
+    public Map<String, Integer> getResources()
     {
-        this.resourcesBeingMoved = resourcesBeingMoved;
+        return resources;
     }
 }

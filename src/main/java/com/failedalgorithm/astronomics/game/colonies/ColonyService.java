@@ -100,10 +100,7 @@ public class ColonyService
             return new ColonyFoundationFailureResponse("Failure", "Plot Not Found");
         }
 
-        Building newCommandCenter = buildingService.createInitialCommandCenter(targetZone, targetPlot,
-                                                                               request.getColonyName(), targetUser);
-        // Adjust plot object
-        targetPlot = plotService.updatePlotWithBuilding(newCommandCenter, targetPlot);
+
 
         // Create new colony object and adjust
         Colony newColony = new Colony();
@@ -112,6 +109,12 @@ public class ColonyService
         newColony.setZone(targetZone);
         newColony.setPlot(targetPlot);
         newColony = repository.save(newColony);
+
+        Building newCommandCenter = buildingService.createInitialCommandCenter(targetZone, targetPlot,
+                                                                               newColony, targetUser);
+        // Adjust plot object
+        targetPlot = plotService.updatePlotWithBuilding(newCommandCenter, targetPlot);
+
         // TODO: Construct colony DTO instead of passing raw Colony
         return new ColonyFoundationSuccessResponse("Success",
                                                    "Your colony has been founded.",

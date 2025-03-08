@@ -4,6 +4,8 @@ public class JobSuccessResponse implements JobResultResponse
 {
     private String message;
 
+    public JobSuccessResponse() {}
+
     public void setMessage(String message)
     {
         this.message = message;

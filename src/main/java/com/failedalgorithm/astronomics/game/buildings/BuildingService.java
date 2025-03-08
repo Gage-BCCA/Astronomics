@@ -86,6 +86,8 @@ public class BuildingService
     //-----------------------------------------
     public BuildingResponse createBuilding(BuildingCreationRequest request)
     {
+        //region Getting target zone
+        //-----------------------------------
         Optional<Zone> zoneQuery = zoneRepository.findByCoordinates(request.getZoneX(), request.getZoneY());
         Zone zone;
         if (zoneQuery.isPresent())
@@ -96,19 +98,30 @@ public class BuildingService
         {
             return new BuildingGenericErrorResponse("Could not find zone.");
         }
+        //-----------------------------------
+        //endregion
 
+        //region Getting target plot
+        //-----------------------------------
         Optional<Plot> plotQuery = plotRepository.findByXAndYAndZone(request.getPlotX(), request.getPlotY(), zone);
         Plot plot;
         if (plotQuery.isPresent())
         {
             plot = plotQuery.get();
+            if (plot.isOccupied())
+            {
+                return new BuildingGenericErrorResponse("Plot is already occupied");
+            }
         }
         else
         {
             return new BuildingGenericErrorResponse("Could not find plot.");
         }
+        //-----------------------------------
+        //endregion
 
-        // Get User
+        //region Getting requesting user
+        //-----------------------------------
         Optional<User> userQuery = userRepository.findById(request.getUserId());
         User user;
         if (userQuery.isPresent())
@@ -119,7 +132,11 @@ public class BuildingService
         {
             return new BuildingGenericErrorResponse("Could not find user.");
         }
+        //-----------------------------------
+        //endregion
 
+        //region Getting user's colony
+        //-----------------------------------
         Optional<Colony> colonyQuery = colonyRepository.findByOwner(user);
         Colony colony;
         if (colonyQuery.isEmpty())
@@ -127,7 +144,11 @@ public class BuildingService
             return new BuildingGenericErrorResponse("Could not find colony.");
         }
         colony = colonyQuery.get();
+        //-----------------------------------
+        //endregion
 
+        //region Constructing new Building object
+        //-----------------------------------
         Building newBuilding = factory.createBuildingClass(request.getBuildingType());
         newBuilding.setCraftSpeed();
         newBuilding.setMaxStorage();
@@ -140,19 +161,56 @@ public class BuildingService
         newBuilding.setLastModifiedTimestamp(new Date());
         newBuilding.setLastProductionTimestamp(new Date());
         repository.save(newBuilding);
+        //-----------------------------------
+        //endregion
+
+        //region Altering target plot properties
+        //-----------------------------------
+        plot.setOccupied(true);
+        plot.setBuilding(newBuilding);
+        plotRepository.save(plot);
+        //-----------------------------------
+        //endregion
+
         return new BuildingCreatedResponse("Successfully built", new BuildingDetailsDTO(newBuilding));
     }
 
-    public Building createInitialCommandCenter(Zone zone, Plot plot, String colonyName, User user)
+    public Building createInitialCommandCenter(Zone zone, Plot plot, Colony colony, User user)
     {
+        //region Constructing new Building object
+        //-----------------------------------
         Building newBuilding = factory.createBuildingClass("COMMAND_CENTER");
-        newBuilding.setBuildingIdentifier(colonyName + "-HQ1");
+        newBuilding.setCraftSpeed();
+        newBuilding.setMaxStorage();
+        newBuilding.setBuildingIdentifier(colony.getColonyName() + "-HQ1");
         newBuilding.setZone(zone);
         newBuilding.setPlot(plot);
         newBuilding.setOwner(user);
+        newBuilding.setColony(colony);
+        newBuilding.setDateCreated(new Date());
+        newBuilding.setLastModifiedTimestamp(new Date());
+        newBuilding.setLastProductionTimestamp(new Date());
         newBuilding.setBuilt(true);
         newBuilding.setActive(true);
-        return repository.save(newBuilding);
+        newBuilding = repository.save(newBuilding);
+        //-----------------------------------
+        //endregion
+
+        //region Altering target plot properties
+        //-----------------------------------
+        plot.setOccupied(true);
+        plot.setBuilding(newBuilding);
+        plotRepository.save(plot);
+        //-----------------------------------
+        //endregion
+
+        //region Setting up starter BuildingStorage entries
+        //-----------------------------------
+
+        //-----------------------------------
+        //endregion
+
+        return newBuilding;
     }
     //-----------------------------------------
     //endregion

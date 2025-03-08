@@ -1,13 +1,15 @@
 package com.failedalgorithm.astronomics.game.items.types.type_vault;
 
+import com.failedalgorithm.astronomics.game.items.Item;
 import com.failedalgorithm.astronomics.game.items.types.ItemType;
 import jakarta.persistence.*;
 
 @Entity
 @DiscriminatorValue("RAW_STONE")
-public class RawStone extends ItemType
+public class RawStone extends Item
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    public RawStone()
+    {
+    }
 }
