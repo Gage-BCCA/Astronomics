@@ -1,2 +1,0 @@
-- Add more details for world
-- Add World DTO, more GET operations
