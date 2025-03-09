@@ -1,7 +1,7 @@
-package com.failedalgorithm.astronomics.jobs;
+package com.failedalgorithm.astronomics.game.jobs;
 
-import com.failedalgorithm.astronomics.jobs.job_queue.JobQueue;
-import com.failedalgorithm.astronomics.jobs.job_queue.JobQueueRepository;
+import com.failedalgorithm.astronomics.game.jobs.job_queue.JobQueue;
+import com.failedalgorithm.astronomics.game.jobs.job_queue.JobQueueRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Component
 public class JobScannerTask

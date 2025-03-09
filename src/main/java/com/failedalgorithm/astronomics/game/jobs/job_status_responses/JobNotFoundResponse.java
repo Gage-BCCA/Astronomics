@@ -1,4 +1,4 @@
-package com.failedalgorithm.astronomics.jobs.job_status_responses;
+package com.failedalgorithm.astronomics.game.jobs.job_status_responses;
 
 public class JobNotFoundResponse implements JobResultResponse
 {

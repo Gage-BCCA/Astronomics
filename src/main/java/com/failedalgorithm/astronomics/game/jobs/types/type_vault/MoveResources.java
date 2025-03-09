@@ -1,17 +1,12 @@
-package com.failedalgorithm.astronomics.jobs.types.type_vault;
+package com.failedalgorithm.astronomics.game.jobs.types.type_vault;
 
-import com.failedalgorithm.astronomics.game.items.Item;
-import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
-import com.failedalgorithm.astronomics.jobs.Job;
-import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
-import com.failedalgorithm.astronomics.jobs.job_status_responses.JobSuccessResponse;
-import com.failedalgorithm.astronomics.jobs.requests.JobCreationRequest;
+import com.failedalgorithm.astronomics.game.jobs.Job;
+import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobResultResponse;
+import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobSuccessResponse;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Transient;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Entity

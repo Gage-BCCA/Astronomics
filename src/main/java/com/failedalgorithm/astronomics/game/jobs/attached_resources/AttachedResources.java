@@ -1,7 +1,7 @@
-package com.failedalgorithm.astronomics.jobs.attached_resources;
+package com.failedalgorithm.astronomics.game.jobs.attached_resources;
 
 import com.failedalgorithm.astronomics.game.items.Item;
-import com.failedalgorithm.astronomics.jobs.Job;
+import com.failedalgorithm.astronomics.game.jobs.Job;
 import jakarta.persistence.*;
 
 @Entity

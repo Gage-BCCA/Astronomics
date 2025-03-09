@@ -1,7 +1,7 @@
-package com.failedalgorithm.astronomics.jobs.types;
+package com.failedalgorithm.astronomics.game.jobs.types;
 
-import com.failedalgorithm.astronomics.jobs.Job;
-import com.failedalgorithm.astronomics.jobs.types.type_vault.MoveResources;
+import com.failedalgorithm.astronomics.game.jobs.Job;
+import com.failedalgorithm.astronomics.game.jobs.types.type_vault.MoveResources;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 

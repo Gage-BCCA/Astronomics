@@ -1,4 +1,4 @@
-package com.failedalgorithm.astronomics.jobs.responses;
+package com.failedalgorithm.astronomics.game.jobs.responses;
 
 public interface JobResponse
 {

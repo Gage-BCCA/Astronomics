@@ -1,8 +1,8 @@
-package com.failedalgorithm.astronomics.jobs.types;
+package com.failedalgorithm.astronomics.game.jobs.types;
 
 
-import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
-import com.failedalgorithm.astronomics.jobs.job_status_responses.JobSuccessResponse;
+import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobResultResponse;
+import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobSuccessResponse;
 import jakarta.persistence.*;
 
 @Entity

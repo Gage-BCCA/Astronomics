@@ -1,4 +1,4 @@
-package com.failedalgorithm.astronomics.jobs.job_queue;
+package com.failedalgorithm.astronomics.game.jobs.job_queue;
 
 import org.springframework.data.repository.CrudRepository;
 

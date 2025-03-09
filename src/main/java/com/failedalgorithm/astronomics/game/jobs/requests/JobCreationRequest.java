@@ -1,15 +1,12 @@
-package com.failedalgorithm.astronomics.jobs.requests;
+package com.failedalgorithm.astronomics.game.jobs.requests;
 
 import java.util.HashMap;
+import java.util.Map;
 
-
-public class MoveResourcesRequest extends JobCreationRequest
+public class JobCreationRequest
 {
-    //================================================================================
-    // Properties
-    //================================================================================
+    private Long userId;
     private String jobType;
-    private HashMap<String, Integer> resourcesBeingMoved;
     private int targetZoneX;
     private int targetZoneY;
     private int targetPlotX;
@@ -19,33 +16,24 @@ public class MoveResourcesRequest extends JobCreationRequest
     private int jobOriginPlotX;
     private int jobOriginPlotY;
     private int jobTimeInSeconds;
+    private Map<String, Integer> resources;
 
-    //================================================================================
-    // Constructors
-    //================================================================================
-    public MoveResourcesRequest() {}
+    public JobCreationRequest () {}
 
 
-    //================================================================================
-    // Overridden Methods
-    //================================================================================
-    @Override
+    public Long getUserId()
+    {
+        return userId;
+    }
+
+    public void setUserId(Long userId)
+    {
+        this.userId = userId;
+    }
+
     public String getJobType()
     {
-        return this.jobType;
-    }
-
-    //================================================================================
-    // Accessors
-    //================================================================================
-    public HashMap<String, Integer> getResourcesBeingMoved()
-    {
-        return resourcesBeingMoved;
-    }
-
-    public void setResourcesBeingMoved(HashMap<String, Integer> resourcesBeingMoved)
-    {
-        this.resourcesBeingMoved = resourcesBeingMoved;
+        return jobType;
     }
 
     public void setJobType(String jobType)
@@ -141,5 +129,15 @@ public class MoveResourcesRequest extends JobCreationRequest
     public void setJobTimeInSeconds(int jobTimeInSeconds)
     {
         this.jobTimeInSeconds = jobTimeInSeconds;
+    }
+
+    public Map<String, Integer> getResources()
+    {
+        return resources;
+    }
+
+    public void setResources(Map<String, Integer> resources)
+    {
+        this.resources = resources;
     }
 }

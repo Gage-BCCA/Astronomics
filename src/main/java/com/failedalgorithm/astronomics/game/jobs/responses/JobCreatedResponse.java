@@ -1,6 +1,6 @@
-package com.failedalgorithm.astronomics.jobs.responses;
+package com.failedalgorithm.astronomics.game.jobs.responses;
 
-import com.failedalgorithm.astronomics.jobs.Job;
+import com.failedalgorithm.astronomics.game.jobs.Job;
 
 public class JobCreatedResponse implements JobResponse
 {

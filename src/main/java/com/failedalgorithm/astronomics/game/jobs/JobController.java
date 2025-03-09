@@ -1,9 +1,8 @@
-package com.failedalgorithm.astronomics.jobs;
+package com.failedalgorithm.astronomics.game.jobs;
 
-import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
-import com.failedalgorithm.astronomics.jobs.requests.JobCreationRequest;
-import com.failedalgorithm.astronomics.jobs.requests.MoveResourcesRequest;
-import com.failedalgorithm.astronomics.jobs.responses.JobResponse;
+import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobResultResponse;
+import com.failedalgorithm.astronomics.game.jobs.requests.JobCreationRequest;
+import com.failedalgorithm.astronomics.game.jobs.responses.JobResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package com.failedalgorithm.astronomics.jobs;
+package com.failedalgorithm.astronomics.game.jobs;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

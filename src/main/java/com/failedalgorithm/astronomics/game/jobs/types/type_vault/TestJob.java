@@ -1,9 +1,8 @@
-package com.failedalgorithm.astronomics.jobs.types.type_vault;
+package com.failedalgorithm.astronomics.game.jobs.types.type_vault;
 
-import com.failedalgorithm.astronomics.jobs.Job;
-import com.failedalgorithm.astronomics.jobs.types.JobType;
-import com.failedalgorithm.astronomics.jobs.job_status_responses.JobResultResponse;
-import com.failedalgorithm.astronomics.jobs.job_status_responses.JobSuccessResponse;
+import com.failedalgorithm.astronomics.game.jobs.Job;
+import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobResultResponse;
+import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobSuccessResponse;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 

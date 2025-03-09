@@ -14,7 +14,7 @@ import com.failedalgorithm.astronomics.users.auth.ApiKeyRepository;
 import com.failedalgorithm.astronomics.game.buildings.BuildingRepository;
 import com.failedalgorithm.astronomics.game.colonies.ColonyRepository;
 import com.failedalgorithm.astronomics.game.items.ItemRepository;
-import com.failedalgorithm.astronomics.jobs.JobRepository;
+import com.failedalgorithm.astronomics.game.jobs.JobRepository;
 import com.failedalgorithm.astronomics.users.User;
 import com.failedalgorithm.astronomics.users.UserRepository;
 import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
