@@ -6,7 +6,7 @@ import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobSuccess
 import jakarta.persistence.*;
 
 @Entity
-
+@Table(name = "job_types")
 public class JobType
 {
 

@@ -8,6 +8,7 @@ import java.util.Set;
 
 
 @Entity
+@Table(name = "items")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "itemtype",
         discriminatorType = DiscriminatorType.STRING)

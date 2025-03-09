@@ -4,6 +4,7 @@ import com.failedalgorithm.astronomics.game.items.Item;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "produced_items")
 public class ProducedItem
 {
     //================================================================================
