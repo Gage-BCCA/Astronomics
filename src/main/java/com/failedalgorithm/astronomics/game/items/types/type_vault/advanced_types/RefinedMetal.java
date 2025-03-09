@@ -7,7 +7,15 @@ import jakarta.persistence.*;
 @DiscriminatorValue("REFINED_METAL")
 public class RefinedMetal extends Item
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private final String itemName = "REFINED_METAL";
+
+    public RefinedMetal()
+    {
+    }
+
+    @Override
+    public String getItemName()
+    {
+        return itemName;
+    }
 }

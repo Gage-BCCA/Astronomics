@@ -35,10 +35,10 @@ public class ColonyController
         return service.getAllColonies();
     }
 
-    @PostMapping("/details")
-    public ColonyReadResponse getColony(@RequestBody ColonyReadRequest request,
-                                        @RequestAttribute("userId") Long userId)
+    @GetMapping("/details")
+    public ColonyReadResponse getColony(@RequestAttribute("userId") Long userId)
     {
+        ColonyReadRequest request = new ColonyReadRequest();
         request.setUserId(userId);
         return service.getIndividualColony(request);
     }
@@ -47,7 +47,7 @@ public class ColonyController
 
     //region Creators
     //-----------------------------------------
-    @PostMapping("/found-new-colony")
+    @PostMapping("/found")
     public ColonyFoundationResponse foundNewColony(@RequestBody ColonyCreateRequest request,
                                                    @RequestAttribute("userId") Long userId)
     {
@@ -59,7 +59,7 @@ public class ColonyController
 
     //region Updaters
     //-----------------------------------------
-    @PutMapping("/update-colony")
+    @PutMapping("/update")
     public ColonyUpdateResponse updateColony(@RequestBody ColonyUpdateRequest request,
                                              @RequestAttribute("userId") Long userId)
     {

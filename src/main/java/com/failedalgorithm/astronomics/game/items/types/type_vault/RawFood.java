@@ -8,5 +8,15 @@ import jakarta.persistence.*;
 @DiscriminatorValue("RAW_FOOD")
 public class RawFood extends Item
 {
+    private String itemName = "RAW_FOOD";
 
+    public RawFood()
+    {
+    }
+
+    @Override
+    public String getItemName()
+    {
+        return itemName;
+    }
 }

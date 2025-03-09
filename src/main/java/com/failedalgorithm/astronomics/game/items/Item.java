@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "item_type",
+@DiscriminatorColumn(name = "itemtype",
         discriminatorType = DiscriminatorType.STRING)
 public class Item
 {
@@ -26,6 +26,11 @@ public class Item
 
     @Transient
     private Integer unitSize;
+
+    public String getItemType()
+    {
+        return this.getClass().getAnnotation(DiscriminatorValue.class).value();
+    }
 
 
     public Long getId()

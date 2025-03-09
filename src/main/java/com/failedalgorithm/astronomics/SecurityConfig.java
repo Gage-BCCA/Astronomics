@@ -19,11 +19,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
          http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/accounts", "/accounts/**").permitAll()
-                        .requestMatchers("**").permitAll()
-                        .anyRequest().authenticated()
-                )
                 .addFilterBefore(apiKeyFilter, BasicAuthenticationFilter.class); // Add API Key Filter
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();

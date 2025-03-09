@@ -57,7 +57,7 @@ public class BuildingController
     //region Deleters
     //------------------------------------------
     @DeleteMapping("/demolish")
-    public BuildingResponse deleteBuilding(@RequestParam Long buildingId,
+    public BuildingResponse deleteBuilding(@RequestParam(value = "buildingId") Long buildingId,
                                            @RequestAttribute("userId") Long userId)
     {
         BuildingDeleteRequest request = new BuildingDeleteRequest();
@@ -70,7 +70,7 @@ public class BuildingController
 
     //region Updaters
     //------------------------------------------
-    @PutMapping("/update-building")
+    @PutMapping("/update")
     public BuildingResponse updateBuilding(@RequestBody BuildingUpdateRequest request,
                                            @RequestAttribute("userId") Long userId)
     {

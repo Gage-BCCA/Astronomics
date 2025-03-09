@@ -13,9 +13,7 @@ public class RawMetal extends Item
     //================================================================================
     // Properties
     //================================================================================
-    private int baseValue;
-    private int unitSize;
-    private String description;
+    private final String itemName = "RAW_METAL";
 
 
     //================================================================================
@@ -35,6 +33,9 @@ public class RawMetal extends Item
     //================================================================================
     // Overridden Accessors
     //================================================================================
-
-    
+    @Override
+    public String getItemName()
+    {
+        return itemName;
+    }
 }

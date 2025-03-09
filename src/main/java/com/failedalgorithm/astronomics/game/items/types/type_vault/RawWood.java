@@ -9,7 +9,15 @@ import jakarta.persistence.*;
 public class RawWood extends Item
 {
 
+    private final String itemName = "RAW_WOOD";
+
     public RawWood()
     {
+    }
+
+    @Override
+    public String getItemName()
+    {
+        return itemName;
     }
 }

@@ -8,7 +8,13 @@ import jakarta.persistence.*;
 @DiscriminatorValue("REFINED_FOOD")
 public class RefinedFood extends Item
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String itemName = "REFINED_FOOD";
+
+    public RefinedFood() {}
+
+    @Override
+    public String getItemName()
+    {
+        return itemName;
+    }
 }

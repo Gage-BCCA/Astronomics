@@ -1,5 +1,7 @@
 package com.failedalgorithm.astronomics.game.buildings;
 
+import com.failedalgorithm.astronomics.game.buildings.building_storage.BuildingStorage;
+import com.failedalgorithm.astronomics.game.buildings.building_storage.BuildingStorageRepository;
 import com.failedalgorithm.astronomics.game.buildings.requests.BuildingDeleteRequest;
 import com.failedalgorithm.astronomics.game.buildings.requests.BuildingProduceRequest;
 import com.failedalgorithm.astronomics.game.buildings.requests.BuildingUpdateRequest;
@@ -7,6 +9,8 @@ import com.failedalgorithm.astronomics.game.buildings.responses.*;
 import com.failedalgorithm.astronomics.game.buildings.responses.successes.*;
 import com.failedalgorithm.astronomics.game.buildings.responses.errors.BuildingGenericErrorResponse;
 import com.failedalgorithm.astronomics.game.buildings.responses.errors.BuildingNotFoundResponse;
+import com.failedalgorithm.astronomics.game.buildings.types.produced_items.ProducedItem;
+import com.failedalgorithm.astronomics.game.buildings.types.produced_items.ProducedItemRepository;
 import com.failedalgorithm.astronomics.game.colonies.Colony;
 import com.failedalgorithm.astronomics.game.colonies.ColonyRepository;
 import com.failedalgorithm.astronomics.users.User;
@@ -18,6 +22,7 @@ import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
 import com.failedalgorithm.astronomics.game.worlds.plots.PlotRepository;
 import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
 import com.failedalgorithm.astronomics.game.worlds.zones.ZoneRepository;
+import com.failedalgorithm.astronomics.users.responses.GenericErrorResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,6 +55,12 @@ public class BuildingService
 
     @Autowired
     ColonyRepository colonyRepository;
+
+    @Autowired
+    BuildingStorageRepository buildingStorageRepository;
+
+    @Autowired
+    ProducedItemRepository producedItemRepository;
 
 
     //================================================================================
@@ -160,6 +171,13 @@ public class BuildingService
         newBuilding.setDateCreated(new Date());
         newBuilding.setLastModifiedTimestamp(new Date());
         newBuilding.setLastProductionTimestamp(new Date());
+
+        Optional<ProducedItem> producedItem = producedItemRepository.findByBuildingType(request.getBuildingType());
+        if (producedItem.isEmpty())
+        {
+            return new BuildingGenericErrorResponse("Internal Error. Shit's _real_ broke.");
+        }
+        newBuilding.setItem(producedItem.get().getItem());
         repository.save(newBuilding);
         //-----------------------------------
         //endregion
@@ -172,7 +190,7 @@ public class BuildingService
         //-----------------------------------
         //endregion
 
-        return new BuildingCreatedResponse("Successfully built", new BuildingDetailsDTO(newBuilding));
+        return new BuildingCreatedResponse("Success", "Successfully built", new BuildingDetailsDTO(newBuilding));
     }
 
     public Building createInitialCommandCenter(Zone zone, Plot plot, Colony colony, User user)
@@ -224,7 +242,11 @@ public class BuildingService
         {
             return new BuildingNotFoundResponse();
         }
-        repository.delete(buildingQuery.get());
+        Building building = buildingQuery.get();
+
+        building.getPlot().setBuilding(null);
+        plotRepository.save(building.getPlot());
+        repository.delete(building);
         return new BuildingDeletedResponse();
     }
     //-----------------------------------------
@@ -258,6 +280,21 @@ public class BuildingService
         }
         Building building = buildingQuery.get();
         Long resourcesGathered = building.produce();
+        Optional<BuildingStorage> storageEntryQuery = buildingStorageRepository.findByBuildingIdAndItemId(building.getId(), building.getItem().getId());
+        if (storageEntryQuery.isPresent())
+        {
+            BuildingStorage storageEntry = storageEntryQuery.get();
+            storageEntry.setAmount(storageEntry.getAmount() + resourcesGathered);
+            buildingStorageRepository.save(storageEntry);
+        }
+        else
+        {
+            BuildingStorage storageEntry = new BuildingStorage();
+            storageEntry.setItem(building.getItem());
+            storageEntry.setBuilding(building);
+            storageEntry.setAmount(resourcesGathered);
+            buildingStorageRepository.save(storageEntry);
+        }
         return new BuildingProductionInvokedResponse(resourcesGathered);
     }
     //-----------------------------------------

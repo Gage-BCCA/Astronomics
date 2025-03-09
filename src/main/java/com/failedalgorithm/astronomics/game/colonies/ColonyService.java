@@ -5,6 +5,7 @@ import com.failedalgorithm.astronomics.game.buildings.BuildingService;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyDeleteRequest;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyReadRequest;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyUpdateRequest;
+import com.failedalgorithm.astronomics.game.colonies.responses.ColonyResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.delete.ColonyDeleteFailedResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.delete.ColonyDeleteResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.delete.ColonyDeleteSuccessResponse;
@@ -15,6 +16,7 @@ import com.failedalgorithm.astronomics.game.colonies.responses.update.ColonyUpda
 import com.failedalgorithm.astronomics.game.colonies.responses.update.ColonyUpdateResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.update.ColonyUpdateSuccessResponse;
 import com.failedalgorithm.astronomics.users.User;
+import com.failedalgorithm.astronomics.users.UserRepository;
 import com.failedalgorithm.astronomics.users.UserService;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyCreateRequest;
 import com.failedalgorithm.astronomics.game.colonies.responses.create.ColonyFoundationFailureResponse;
@@ -24,9 +26,12 @@ import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
 import com.failedalgorithm.astronomics.game.worlds.plots.PlotService;
 import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
 import com.failedalgorithm.astronomics.game.worlds.zones.ZoneService;
+import com.failedalgorithm.astronomics.users.responses.GenericErrorResponse;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -51,6 +56,9 @@ public class ColonyService
     @Autowired
     BuildingService buildingService;
 
+    @Autowired
+    UserRepository userRepository;
+
 
     //================================================================================
     // Services
@@ -65,12 +73,18 @@ public class ColonyService
 
     public ColonyReadResponse getIndividualColony(ColonyReadRequest request)
     {
-        Optional<Colony> colonyQuery = repository.findByColonyName(request.getColonyName());
+        Optional<User> owner = userRepository.findById(request.getUserId());
+        if (owner.isEmpty())
+        {
+            return new ColonyReadFailedResponse("Failed", "Calling agent does not have a colony associated with it");
+        }
+        Optional<Colony> colonyQuery = repository.findByOwner(owner.get());
         if (colonyQuery.isEmpty())
         {
             return new ColonyReadFailedResponse("Failed", "Colony not found.");
         }
         Colony colony = colonyQuery.get();
+        Hibernate.initialize(colony);
         return new ColonyReadByOwnerResponse("Success", "Colony located", colony);
     }
     //-----------------------------------------
@@ -80,12 +94,15 @@ public class ColonyService
     //-----------------------------------------
     public ColonyFoundationResponse foundNewColony(ColonyCreateRequest request)
     {
-        // TODO: make sure plot is not occupied with building
-        // TODO: make sure user does not have a colony
         User targetUser = userService.getById(request.getUserId());
         if (targetUser == null)
         {
             return new ColonyFoundationFailureResponse("Failure", "User Not Found");
+        }
+        Optional<Colony> colonyQuery = repository.findByOwner(targetUser);
+        if (colonyQuery.isPresent())
+        {
+            return new ColonyFoundationFailureResponse("Failure", "User already has a colony.");
         }
 
         Zone targetZone = zoneService.getZoneObjectByCoordinates(request.getZoneX(), request.getZoneY());
@@ -99,8 +116,10 @@ public class ColonyService
         {
             return new ColonyFoundationFailureResponse("Failure", "Plot Not Found");
         }
-
-
+        if (targetPlot.isOccupied())
+        {
+            return new ColonyFoundationFailureResponse("Failure", "Plot already has a building");
+        }
 
         // Create new colony object and adjust
         Colony newColony = new Colony();
@@ -115,7 +134,6 @@ public class ColonyService
         // Adjust plot object
         targetPlot = plotService.updatePlotWithBuilding(newCommandCenter, targetPlot);
 
-        // TODO: Construct colony DTO instead of passing raw Colony
         return new ColonyFoundationSuccessResponse("Success",
                                                    "Your colony has been founded.",
                                                    newColony);
@@ -132,10 +150,21 @@ public class ColonyService
         {
             return new ColonyUpdateFailedResponse("Failed", "Colony not found");
         }
-        // TODO: Check if colony owner is the same user making request
+
+        Optional<User> userQuery = userRepository.findById(request.getUserId());
+        if (userQuery.isEmpty())
+        {
+            return new ColonyUpdateFailedResponse("Failed", "No user found for calling agent");
+        }
+
+        if (userQuery.get().getId() != targetColony.get().getOwner().getId())
+        {
+            return new ColonyUpdateFailedResponse("Failed", "Calling agent does not match colony owner");
+        }
+
         Colony colony = targetColony.get();
-        colony.setColonyName(request.getColonyName());
-        repository.save(targetColony.get());
+        colony.setColonyName(request.getNewName());
+        colony = repository.save(colony);
         ColonyUpdateSuccessResponse success = new ColonyUpdateSuccessResponse();
         success.setMessage("Colony Updated");
         success.setStatus("Success");
@@ -154,6 +183,20 @@ public class ColonyService
         {
             return new ColonyDeleteFailedResponse("Failed", "Could not find colony");
         }
+
+        Optional<User> userQuery = userRepository.findById(request.getUserId());
+        if (userQuery.isEmpty())
+        {
+            return new ColonyDeleteFailedResponse("Failed",
+                    "No user found for calling agent");
+        }
+
+        if (!Objects.equals(colonyQuery.get().getOwner().getId(), userQuery.get().getId()))
+        {
+            return new ColonyDeleteFailedResponse("Failed",
+                    "Calling agent id does not match colony owner's id");
+        }
+
         repository.delete(colonyQuery.get());
         return new ColonyDeleteSuccessResponse("Success", "Colony successfully deleted");
     }

@@ -1,13 +1,11 @@
-package com.failedalgorithm.astronomics.jobs.attached_resources;
+package com.failedalgorithm.astronomics.game.buildings.types.produced_items;
 
 import com.failedalgorithm.astronomics.game.items.Item;
-import com.failedalgorithm.astronomics.jobs.Job;
 import jakarta.persistence.*;
 
 @Entity
-public class AttachedResources
+public class ProducedItem
 {
-
     //================================================================================
     // Properties
     //================================================================================
@@ -15,24 +13,16 @@ public class AttachedResources
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    private String buildingType;
+
+    @OneToOne
     private Item item;
-
-    @ManyToOne
-    private Job job;
-
-    private Integer amount;
-
 
     //================================================================================
     // Constructors
     //================================================================================
-    public AttachedResources() {}
-
-    public AttachedResources(Job job, Item item)
+    public ProducedItem()
     {
-        this.item = item;
-        this.job = job;
     }
 
 
@@ -49,6 +39,16 @@ public class AttachedResources
         this.id = id;
     }
 
+    public String getBuildingType()
+    {
+        return buildingType;
+    }
+
+    public void setBuildingType(String buildingType)
+    {
+        this.buildingType = buildingType;
+    }
+
     public Item getItem()
     {
         return item;
@@ -57,25 +57,5 @@ public class AttachedResources
     public void setItem(Item item)
     {
         this.item = item;
-    }
-
-    public Job getJob()
-    {
-        return job;
-    }
-
-    public void setJob(Job job)
-    {
-        this.job = job;
-    }
-
-    public Integer getAmount()
-    {
-        return amount;
-    }
-
-    public void setAmount(Integer amount)
-    {
-        this.amount = amount;
     }
 }

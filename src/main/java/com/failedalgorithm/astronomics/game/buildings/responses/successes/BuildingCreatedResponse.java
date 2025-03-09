@@ -17,8 +17,9 @@ public class BuildingCreatedResponse implements BuildingResponse
     //================================================================================
     // Constructors
     //================================================================================
-    public BuildingCreatedResponse(String message, BuildingDetailsDTO building)
+    public BuildingCreatedResponse(String status, String message, BuildingDetailsDTO building)
     {
+        this.status = status;
         this.message = message;
         this.building = building;
     }

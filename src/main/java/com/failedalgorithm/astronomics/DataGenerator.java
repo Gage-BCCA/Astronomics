@@ -1,7 +1,14 @@
 package com.failedalgorithm.astronomics;
 
 
+import com.failedalgorithm.astronomics.game.buildings.types.produced_items.ProducedItem;
+import com.failedalgorithm.astronomics.game.buildings.types.produced_items.ProducedItemRepository;
 import com.failedalgorithm.astronomics.game.items.Item;
+import com.failedalgorithm.astronomics.game.items.recipes.Recipe;
+import com.failedalgorithm.astronomics.game.items.recipes.RecipeRepository;
+import com.failedalgorithm.astronomics.game.items.types.type_vault.advanced_types.RefinedMetal;
+import com.failedalgorithm.astronomics.game.items.types.type_vault.advanced_types.RefinedStone;
+import com.failedalgorithm.astronomics.game.items.types.type_vault.advanced_types.RefinedWood;
 import com.failedalgorithm.astronomics.users.auth.ApiKey;
 import com.failedalgorithm.astronomics.users.auth.ApiKeyRepository;
 import com.failedalgorithm.astronomics.game.buildings.BuildingRepository;
@@ -39,7 +46,9 @@ public class DataGenerator {
             JobRepository jobRepository,
             ItemRepository itemRepository,
             UserRepository userRepository,
-            ApiKeyRepository apiKeyRepository
+            ApiKeyRepository apiKeyRepository,
+            RecipeRepository recipeRepository,
+            ProducedItemRepository producedItemRepository
     ) {
         return args ->
         {
@@ -87,9 +96,32 @@ public class DataGenerator {
             Item basicMetal = new RawMetal();
             Item basicWood = new RawWood();
             Item basicStone = new RawStone();
-            itemRepository.save(basicStone);
-            itemRepository.save(basicWood);
-            itemRepository.save(basicMetal);
+            Item refinedMetal = new RefinedMetal();
+            Item refinedWood = new RefinedWood();
+            Item refinedStone = new RefinedStone();
+            basicStone = itemRepository.save(basicStone);
+            basicWood = itemRepository.save(basicWood);
+            basicMetal = itemRepository.save(basicMetal);
+            refinedMetal = itemRepository.save(refinedMetal);
+            refinedWood = itemRepository.save(refinedWood);
+            refinedStone = itemRepository.save(refinedStone);
+
+            Recipe refinedMetalRecipe = new Recipe();
+            refinedMetalRecipe.setMainIngredient(basicMetal);
+            refinedMetalRecipe.setMainIngredientQty(5);
+            refinedMetalRecipe.setProducedItem(refinedMetal);
+            recipeRepository.save(refinedMetalRecipe);
+
+            Recipe refinedWoodRecipe = new Recipe();
+            refinedWoodRecipe.setMainIngredientQty(5);
+            refinedWoodRecipe.setMainIngredient(basicWood);
+            refinedWoodRecipe.setProducedItem(refinedWood);
+            recipeRepository.save(refinedWoodRecipe);
+
+            ProducedItem metalToDrill = new ProducedItem();
+            metalToDrill.setBuildingType("MINING_DRILL");
+            metalToDrill.setItem(basicMetal);
+            producedItemRepository.save(metalToDrill);
 
         };
 

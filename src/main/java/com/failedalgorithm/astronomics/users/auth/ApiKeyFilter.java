@@ -23,35 +23,39 @@ public class ApiKeyFilter implements Filter
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         String apiKey = httpRequest.getHeader("X-API-KEY"); // Read API key from headers
 
-        if (httpRequest.getServletPath().startsWith("/accounts"))
+        if (httpRequest.getServletPath().equals("/accounts/register"))
         {
-            return;
+            chain.doFilter(httpRequest, response);
         }
-        apiKeyRepository.findByKey(apiKey).ifPresentOrElse(
-                apiKeyEntity ->
-                {
-                    httpRequest.setAttribute("userId", apiKeyEntity.getUser().getId());
-                    try
+        else
+        {
+            apiKeyRepository.findByKey(apiKey).ifPresentOrElse(
+                    apiKeyEntity ->
                     {
-                        chain.doFilter(httpRequest, response);
-                    }
-                    catch (IOException | ServletException e)
+                        httpRequest.setAttribute("userId", apiKeyEntity.getUser().getId());
+                        try
+                        {
+                            chain.doFilter(httpRequest, response);
+                        }
+                        catch (IOException | ServletException e)
+                        {
+                            throw new RuntimeException(e);
+                        }
+                    },
+                    () ->
                     {
-                        throw new RuntimeException(e);
+                        try
+                        {
+                            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED,
+                                    "Invalid API Key");
+                        }
+                        catch (IOException e)
+                        {
+                            throw new RuntimeException(e);
+                        }
                     }
-                },
-                () ->
-                {
-                    try
-                    {
-                        ((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED,
-                                                                   "Invalid API Key");
-                    }
-                    catch (IOException e)
-                    {
-                        throw new RuntimeException(e);
-                    }
-                }
-        );
+            );
+        }
+
     }
 }

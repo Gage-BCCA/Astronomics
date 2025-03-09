@@ -73,8 +73,7 @@ public class Building
     @JoinColumn(name = "owner_id")
     private User owner;
 
-    @ManyToOne
-    @JoinColumn(name = "item_produced_id")
+    @Transient
     private Item item;
 
     @OneToMany(mappedBy = "building")

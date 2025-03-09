@@ -34,19 +34,19 @@ public class ColonyReadByOwnerResponse implements ColonyReadResponse
     @Override
     public String getStatus()
     {
-        return "";
+        return this.status;
     }
 
     @Override
     public String getMessage()
     {
-        return "";
+        return this.message;
     }
 
     @Override
     public Colony getColony()
     {
-        return null;
+        return this.colony;
     }
 
 

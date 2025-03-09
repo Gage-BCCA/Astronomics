@@ -1,9 +1,14 @@
 package com.failedalgorithm.astronomics.game.buildings.types.type_vault;
 
 import com.failedalgorithm.astronomics.game.buildings.Building;
+import com.failedalgorithm.astronomics.game.buildings.building_storage.BuildingStorage;
+import com.failedalgorithm.astronomics.game.buildings.building_storage.BuildingStorageRepository;
 import com.failedalgorithm.astronomics.game.buildings.types.BuildingTypeInterface;
+import com.failedalgorithm.astronomics.game.items.Item;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import org.springframework.security.core.parameters.P;
 
 @Entity
@@ -17,6 +22,10 @@ public class MiningDrill extends Building implements BuildingTypeInterface
     private float craftSpeed;
     private int maxStorage;
 
+    @ManyToOne
+    @JoinColumn(name = "item_produced_id")
+    private Item item;
+
 
     //================================================================================
     // Constructor
@@ -27,18 +36,23 @@ public class MiningDrill extends Building implements BuildingTypeInterface
 
 
     //================================================================================
+    // Production Method
+    //================================================================================
+    @Override
+    public Long produce()
+    {
+
+        return 100L;
+    }
+
+
+    //================================================================================
     // Overridden Methods
     //================================================================================
     @Override
     public String getBuildingType()
     {
         return "Mining Drill";
-    }
-
-    @Override
-    public Long produce()
-    {
-        return 100L;
     }
 
     @Override
@@ -66,8 +80,14 @@ public class MiningDrill extends Building implements BuildingTypeInterface
     }
 
     @Override
-    public void setItem()
+    public void setItem(Item item)
     {
-        super.setItem();
+        this.item = item;
+    }
+
+    @Override
+    public Item getItem()
+    {
+        return this.item;
     }
 }

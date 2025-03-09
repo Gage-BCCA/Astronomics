@@ -22,7 +22,7 @@ public class ItemService
         for (Item item : items)
         {
             itemDTOs.add(new ItemDTO(
-                    item.getItemName(), item.getDescription(), item.getUnitSize()
+                    item.getItemName()
             ));
         }
 
