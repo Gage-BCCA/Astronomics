@@ -1,6 +1,5 @@
 package com.failedalgorithm.astronomics.game.jobs.requests;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class JobCreationRequest
@@ -18,7 +17,9 @@ public class JobCreationRequest
     private int jobTimeInSeconds;
     private Map<String, Integer> resources;
 
-    public JobCreationRequest () {}
+    public JobCreationRequest()
+    {
+    }
 
 
     public Long getUserId()

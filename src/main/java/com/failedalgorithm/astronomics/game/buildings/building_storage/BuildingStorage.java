@@ -3,7 +3,6 @@ package com.failedalgorithm.astronomics.game.buildings.building_storage;
 import com.failedalgorithm.astronomics.game.buildings.Building;
 import com.failedalgorithm.astronomics.game.items.Item;
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
 
 @Entity
 public class BuildingStorage

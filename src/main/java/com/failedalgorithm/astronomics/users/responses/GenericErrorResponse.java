@@ -5,7 +5,9 @@ public class GenericErrorResponse implements UserResponse
     private String status;
     private String message;
 
-    public GenericErrorResponse() {}
+    public GenericErrorResponse()
+    {
+    }
 
     public GenericErrorResponse(String status, String message)
     {

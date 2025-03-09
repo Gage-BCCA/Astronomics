@@ -5,7 +5,7 @@ import com.failedalgorithm.astronomics.game.buildings.responses.BuildingResponse
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({ "buildingDTO"})
+@JsonIgnoreProperties({"buildingDTO"})
 public class BuildingCollectionFoundResponse implements BuildingResponse
 {
 

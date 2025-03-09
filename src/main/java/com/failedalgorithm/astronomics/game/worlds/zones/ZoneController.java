@@ -22,7 +22,8 @@ public class ZoneController
     }
 
     @GetMapping("/scan")
-    public ZoneSummaryDTO scanZone(@RequestParam Integer x, @RequestParam Integer y) {
+    public ZoneSummaryDTO scanZone(@RequestParam Integer x, @RequestParam Integer y)
+    {
         return service.getZoneSummaryByCoordinates(x, y);
     }
 

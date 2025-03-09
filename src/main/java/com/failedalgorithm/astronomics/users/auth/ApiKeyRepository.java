@@ -9,5 +9,6 @@ import java.util.Optional;
 public interface ApiKeyRepository extends CrudRepository<ApiKey, Long>
 {
     Optional<ApiKey> findByKey(String key);
-    Optional<ApiKey>findByUserId(Long id);
+
+    Optional<ApiKey> findByUserId(Long id);
 }

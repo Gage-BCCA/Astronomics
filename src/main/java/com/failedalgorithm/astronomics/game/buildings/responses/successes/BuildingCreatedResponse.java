@@ -24,19 +24,23 @@ public class BuildingCreatedResponse implements BuildingResponse
         this.building = building;
     }
 
-    public BuildingCreatedResponse() {}
+    public BuildingCreatedResponse()
+    {
+    }
 
 
     //================================================================================
     // Overridden Methods
     //================================================================================
     @Override
-    public String getMessage() {
+    public String getMessage()
+    {
         return message;
     }
 
     @Override
-    public BuildingDetailsDTO getBuildingDTO() {
+    public BuildingDetailsDTO getBuildingDTO()
+    {
         return building;
     }
 

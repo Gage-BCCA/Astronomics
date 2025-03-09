@@ -2,10 +2,6 @@ package com.failedalgorithm.astronomics.users;
 
 import jakarta.persistence.*;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
-import java.util.UUID;
-
 @Entity
 @Table(name = "Users")
 public class User

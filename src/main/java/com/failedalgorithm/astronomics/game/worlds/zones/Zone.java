@@ -1,7 +1,7 @@
 package com.failedalgorithm.astronomics.game.worlds.zones;
 
-import com.failedalgorithm.astronomics.users.User;
 import com.failedalgorithm.astronomics.game.worlds.World;
+import com.failedalgorithm.astronomics.users.User;
 import jakarta.persistence.*;
 
 

@@ -13,7 +13,9 @@ public class GenericErrorResponse implements JobResponse
     //================================================================================
     // Constructors
     //================================================================================
-    public GenericErrorResponse() {}
+    public GenericErrorResponse()
+    {
+    }
 
     public GenericErrorResponse(String status, String message)
     {

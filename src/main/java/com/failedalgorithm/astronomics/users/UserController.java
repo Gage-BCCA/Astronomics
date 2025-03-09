@@ -4,7 +4,6 @@ import com.failedalgorithm.astronomics.users.DTOs.UserDTO;
 import com.failedalgorithm.astronomics.users.requests.CreateUserRequest;
 import com.failedalgorithm.astronomics.users.requests.DeleteUserRequest;
 import com.failedalgorithm.astronomics.users.requests.UpdateUserRequest;
-import com.failedalgorithm.astronomics.users.responses.GenericSuccessResponse;
 import com.failedalgorithm.astronomics.users.responses.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

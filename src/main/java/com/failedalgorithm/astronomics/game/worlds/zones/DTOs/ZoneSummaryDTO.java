@@ -1,7 +1,7 @@
 package com.failedalgorithm.astronomics.game.worlds.zones.DTOs;
 
-import com.failedalgorithm.astronomics.users.User;
 import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
+import com.failedalgorithm.astronomics.users.User;
 
 public class ZoneSummaryDTO
 {
@@ -19,7 +19,9 @@ public class ZoneSummaryDTO
     //================================================================================
     // Constructors
     //================================================================================
-    public ZoneSummaryDTO() {}
+    public ZoneSummaryDTO()
+    {
+    }
 
     public ZoneSummaryDTO(Zone zone)
     {

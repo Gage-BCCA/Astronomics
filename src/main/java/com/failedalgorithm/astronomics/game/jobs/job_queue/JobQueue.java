@@ -15,7 +15,9 @@ public class JobQueue
     @JoinColumn(name = "job_id")
     private Job job;
 
-    public JobQueue () {}
+    public JobQueue()
+    {
+    }
 
     public Long getId()
     {

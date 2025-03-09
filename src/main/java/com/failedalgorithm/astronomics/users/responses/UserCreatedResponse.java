@@ -1,14 +1,14 @@
 package com.failedalgorithm.astronomics.users.responses;
 
-import java.util.UUID;
-
 public class UserCreatedResponse implements UserResponse
 {
     private String status;
     private String message;
     private String apiKey;
 
-    public UserCreatedResponse() {}
+    public UserCreatedResponse()
+    {
+    }
 
     public String getStatus()
     {

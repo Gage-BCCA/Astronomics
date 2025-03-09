@@ -27,7 +27,9 @@ public class AttachedResources
     //================================================================================
     // Constructors
     //================================================================================
-    public AttachedResources() {}
+    public AttachedResources()
+    {
+    }
 
     public AttachedResources(Job job, Item item)
     {

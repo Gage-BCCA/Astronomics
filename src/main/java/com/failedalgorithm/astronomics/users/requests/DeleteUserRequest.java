@@ -1,7 +1,5 @@
 package com.failedalgorithm.astronomics.users.requests;
 
-import org.hibernate.sql.Delete;
-
 public class DeleteUserRequest
 {
     //================================================================================
@@ -12,7 +10,9 @@ public class DeleteUserRequest
     //================================================================================
     // Constructors
     //================================================================================
-    public DeleteUserRequest() {}
+    public DeleteUserRequest()
+    {
+    }
 
     //================================================================================
     // Accessors

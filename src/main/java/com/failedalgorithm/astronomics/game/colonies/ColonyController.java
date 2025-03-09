@@ -1,9 +1,9 @@
 package com.failedalgorithm.astronomics.game.colonies;
 
+import com.failedalgorithm.astronomics.game.colonies.requests.ColonyCreateRequest;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyDeleteRequest;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyReadRequest;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyUpdateRequest;
-import com.failedalgorithm.astronomics.game.colonies.requests.ColonyCreateRequest;
 import com.failedalgorithm.astronomics.game.colonies.responses.create.ColonyFoundationResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.delete.ColonyDeleteResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.read.ColonyReadResponse;
@@ -80,8 +80,6 @@ public class ColonyController
     }
     //-----------------------------------------
     //endregion
-
-
 
 
 }

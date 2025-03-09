@@ -1,8 +1,6 @@
 package com.failedalgorithm.astronomics.game.colonies.responses.delete;
 
 import com.failedalgorithm.astronomics.game.colonies.Colony;
-import com.failedalgorithm.astronomics.game.colonies.responses.ColonyResponse;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class ColonyDeleteFailedResponse implements ColonyDeleteResponse
 {

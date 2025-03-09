@@ -19,7 +19,7 @@ public class JobFactory
 //        buildTypeMap.put("MINING_DRILL", MiningDrill.class);
 //        buildTypeMap.put("SOLAR_FARM", SolarFarm.class);
 //        buildTypeMap.put("COMMAND_CENTER", CommandCenter.class);
-          jobTypeMap.put("MOVE_RESOURCES", MoveResources.class);
+        jobTypeMap.put("MOVE_RESOURCES", MoveResources.class);
     }
 
     public Job createJobClass(String jobCode)

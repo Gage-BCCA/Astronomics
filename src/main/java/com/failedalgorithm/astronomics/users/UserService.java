@@ -3,7 +3,9 @@ package com.failedalgorithm.astronomics.users;
 import com.failedalgorithm.astronomics.users.DTOs.UserDTO;
 import com.failedalgorithm.astronomics.users.auth.ApiKey;
 import com.failedalgorithm.astronomics.users.auth.ApiKeyRepository;
-import com.failedalgorithm.astronomics.users.requests.*;
+import com.failedalgorithm.astronomics.users.requests.CreateUserRequest;
+import com.failedalgorithm.astronomics.users.requests.DeleteUserRequest;
+import com.failedalgorithm.astronomics.users.requests.UpdateUserRequest;
 import com.failedalgorithm.astronomics.users.responses.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,25 +94,25 @@ public class UserService
 
     public UserResponse updateUser(UpdateUserRequest request)
     {
-       Optional<User> userQuery = repository.findById(request.getUserId());
-       if (userQuery.isEmpty())
-       {
-           return new GenericErrorResponse("Failed", "No matching user matching with the caller's ID");
-       }
-       User user = userQuery.get();
-       if (request.getUsername() != null)
-       {
-           user.setName(request.getUsername());
-       }
+        Optional<User> userQuery = repository.findById(request.getUserId());
+        if (userQuery.isEmpty())
+        {
+            return new GenericErrorResponse("Failed", "No matching user matching with the caller's ID");
+        }
+        User user = userQuery.get();
+        if (request.getUsername() != null)
+        {
+            user.setName(request.getUsername());
+        }
 
-       if (request.getCallsign() != null)
-       {
-           user.setCallsign(request.getCallsign());
-       }
+        if (request.getCallsign() != null)
+        {
+            user.setCallsign(request.getCallsign());
+        }
 
-       repository.save(user);
+        repository.save(user);
 
-       return new GenericSuccessResponse("Success", "User updated");
+        return new GenericSuccessResponse("Success", "User updated");
     }
 
     public UserResponse deleteUserById(DeleteUserRequest request)

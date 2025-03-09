@@ -1,6 +1,5 @@
 package com.failedalgorithm.astronomics.game.items.types.type_vault;
 
-import com.failedalgorithm.astronomics.game.buildings.Building;
 import com.failedalgorithm.astronomics.game.items.Item;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
@@ -23,13 +22,12 @@ public class RawMetal extends Item
     {
     }
 
-    
+
     //================================================================================
     // Overridden Methods for Item Config
     //================================================================================
 
 
-    
     //================================================================================
     // Overridden Accessors
     //================================================================================

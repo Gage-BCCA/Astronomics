@@ -1,7 +1,8 @@
 package com.failedalgorithm.astronomics.game.items.types.type_vault.advanced_types;
 
 import com.failedalgorithm.astronomics.game.items.Item;
-import jakarta.persistence.*;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
 @Entity
 @DiscriminatorValue("REFINED_METAL")

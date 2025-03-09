@@ -1,9 +1,9 @@
 package com.failedalgorithm.astronomics.game.jobs;
 
 import com.failedalgorithm.astronomics.game.buildings.Building;
+import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobResultResponse;
 import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
 import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
-import com.failedalgorithm.astronomics.game.jobs.job_status_responses.JobResultResponse;
 import com.failedalgorithm.astronomics.users.User;
 import jakarta.persistence.*;
 

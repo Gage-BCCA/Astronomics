@@ -1,28 +1,27 @@
 package com.failedalgorithm.astronomics.game.buildings;
 
+import com.failedalgorithm.astronomics.game.buildings.DTOs.BuildingDetailsDTO;
 import com.failedalgorithm.astronomics.game.buildings.building_storage.BuildingStorage;
 import com.failedalgorithm.astronomics.game.buildings.building_storage.BuildingStorageRepository;
+import com.failedalgorithm.astronomics.game.buildings.requests.BuildingCreationRequest;
 import com.failedalgorithm.astronomics.game.buildings.requests.BuildingDeleteRequest;
 import com.failedalgorithm.astronomics.game.buildings.requests.BuildingProduceRequest;
 import com.failedalgorithm.astronomics.game.buildings.requests.BuildingUpdateRequest;
-import com.failedalgorithm.astronomics.game.buildings.responses.*;
-import com.failedalgorithm.astronomics.game.buildings.responses.successes.*;
+import com.failedalgorithm.astronomics.game.buildings.responses.BuildingResponse;
 import com.failedalgorithm.astronomics.game.buildings.responses.errors.BuildingGenericErrorResponse;
 import com.failedalgorithm.astronomics.game.buildings.responses.errors.BuildingNotFoundResponse;
+import com.failedalgorithm.astronomics.game.buildings.responses.successes.*;
+import com.failedalgorithm.astronomics.game.buildings.types.BuildingTypeFactory;
 import com.failedalgorithm.astronomics.game.buildings.types.produced_items.ProducedItem;
 import com.failedalgorithm.astronomics.game.buildings.types.produced_items.ProducedItemRepository;
 import com.failedalgorithm.astronomics.game.colonies.Colony;
 import com.failedalgorithm.astronomics.game.colonies.ColonyRepository;
-import com.failedalgorithm.astronomics.users.User;
-import com.failedalgorithm.astronomics.users.UserRepository;
-import com.failedalgorithm.astronomics.game.buildings.DTOs.BuildingDetailsDTO;
-import com.failedalgorithm.astronomics.game.buildings.requests.BuildingCreationRequest;
-import com.failedalgorithm.astronomics.game.buildings.types.BuildingTypeFactory;
 import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
 import com.failedalgorithm.astronomics.game.worlds.plots.PlotRepository;
 import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
 import com.failedalgorithm.astronomics.game.worlds.zones.ZoneRepository;
-import com.failedalgorithm.astronomics.users.responses.GenericErrorResponse;
+import com.failedalgorithm.astronomics.users.User;
+import com.failedalgorithm.astronomics.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -238,7 +237,7 @@ public class BuildingService
     public BuildingResponse deleteBuildingById(BuildingDeleteRequest request)
     {
         Optional<Building> buildingQuery = repository.findById(request.getBuildingId());
-        if(buildingQuery.isEmpty())
+        if (buildingQuery.isEmpty())
         {
             return new BuildingNotFoundResponse();
         }

@@ -97,7 +97,7 @@ public class BuildingController
     }
 
     @GetMapping("/activate")
-    public BuildingResponse activateBuilding(@RequestParam("buildingId")Long buildingId,
+    public BuildingResponse activateBuilding(@RequestParam("buildingId") Long buildingId,
                                              @RequestAttribute("userId") Long userId)
     {
         return new BuildingGenericErrorResponse("Not implemented");

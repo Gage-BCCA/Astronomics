@@ -2,10 +2,13 @@ package com.failedalgorithm.astronomics.game.colonies;
 
 import com.failedalgorithm.astronomics.game.buildings.Building;
 import com.failedalgorithm.astronomics.game.buildings.BuildingService;
+import com.failedalgorithm.astronomics.game.colonies.requests.ColonyCreateRequest;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyDeleteRequest;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyReadRequest;
 import com.failedalgorithm.astronomics.game.colonies.requests.ColonyUpdateRequest;
-import com.failedalgorithm.astronomics.game.colonies.responses.ColonyResponse;
+import com.failedalgorithm.astronomics.game.colonies.responses.create.ColonyFoundationFailureResponse;
+import com.failedalgorithm.astronomics.game.colonies.responses.create.ColonyFoundationResponse;
+import com.failedalgorithm.astronomics.game.colonies.responses.create.ColonyFoundationSuccessResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.delete.ColonyDeleteFailedResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.delete.ColonyDeleteResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.delete.ColonyDeleteSuccessResponse;
@@ -15,18 +18,13 @@ import com.failedalgorithm.astronomics.game.colonies.responses.read.ColonyReadRe
 import com.failedalgorithm.astronomics.game.colonies.responses.update.ColonyUpdateFailedResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.update.ColonyUpdateResponse;
 import com.failedalgorithm.astronomics.game.colonies.responses.update.ColonyUpdateSuccessResponse;
-import com.failedalgorithm.astronomics.users.User;
-import com.failedalgorithm.astronomics.users.UserRepository;
-import com.failedalgorithm.astronomics.users.UserService;
-import com.failedalgorithm.astronomics.game.colonies.requests.ColonyCreateRequest;
-import com.failedalgorithm.astronomics.game.colonies.responses.create.ColonyFoundationFailureResponse;
-import com.failedalgorithm.astronomics.game.colonies.responses.create.ColonyFoundationResponse;
-import com.failedalgorithm.astronomics.game.colonies.responses.create.ColonyFoundationSuccessResponse;
 import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
 import com.failedalgorithm.astronomics.game.worlds.plots.PlotService;
 import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
 import com.failedalgorithm.astronomics.game.worlds.zones.ZoneService;
-import com.failedalgorithm.astronomics.users.responses.GenericErrorResponse;
+import com.failedalgorithm.astronomics.users.User;
+import com.failedalgorithm.astronomics.users.UserRepository;
+import com.failedalgorithm.astronomics.users.UserService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -130,13 +128,13 @@ public class ColonyService
         newColony = repository.save(newColony);
 
         Building newCommandCenter = buildingService.createInitialCommandCenter(targetZone, targetPlot,
-                                                                               newColony, targetUser);
+                newColony, targetUser);
         // Adjust plot object
         targetPlot = plotService.updatePlotWithBuilding(newCommandCenter, targetPlot);
 
         return new ColonyFoundationSuccessResponse("Success",
-                                                   "Your colony has been founded.",
-                                                   newColony);
+                "Your colony has been founded.",
+                newColony);
     }
     //-----------------------------------------
     //endregion

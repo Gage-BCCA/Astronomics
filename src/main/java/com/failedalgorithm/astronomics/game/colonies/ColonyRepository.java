@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface ColonyRepository extends CrudRepository<Colony, Long>
 {
     Optional<Colony> findByColonyName(@Param("colonyName") String name);
+
     Optional<Colony> findByOwner(@Param("owner") User user);
 }

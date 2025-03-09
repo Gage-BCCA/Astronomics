@@ -15,7 +15,9 @@ public class ColonyUpdateFailedResponse implements ColonyUpdateResponse
     //================================================================================
     // Constructors
     //================================================================================
-    public ColonyUpdateFailedResponse() {}
+    public ColonyUpdateFailedResponse()
+    {
+    }
 
     public ColonyUpdateFailedResponse(String status, String message)
     {

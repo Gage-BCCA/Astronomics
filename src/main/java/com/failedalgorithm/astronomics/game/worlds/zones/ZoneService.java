@@ -38,7 +38,7 @@ public class ZoneService
 
     public ZoneSummaryDTO getZoneSummaryByCoordinates(int x, int y)
     {
-        Optional<Zone> zoneQuery = repository.findByCoordinates(x ,y);
+        Optional<Zone> zoneQuery = repository.findByCoordinates(x, y);
         if (zoneQuery.isPresent())
         {
             return new ZoneSummaryDTO(zoneQuery.get());
@@ -49,7 +49,7 @@ public class ZoneService
 
     public Zone getZoneObjectByCoordinates(int x, int y)
     {
-        Optional<Zone> zoneQuery = repository.findByCoordinates(x ,y);
+        Optional<Zone> zoneQuery = repository.findByCoordinates(x, y);
         if (zoneQuery.isPresent())
         {
             return zoneQuery.get();

@@ -13,7 +13,8 @@ public class BuildingGenericErrorResponse implements BuildingResponse
 
 
     @Override
-    public String getMessage() {
+    public String getMessage()
+    {
         return message;
     }
 

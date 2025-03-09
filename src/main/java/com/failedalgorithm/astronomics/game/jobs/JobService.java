@@ -5,10 +5,6 @@ import com.failedalgorithm.astronomics.game.buildings.building_storage.BuildingS
 import com.failedalgorithm.astronomics.game.buildings.building_storage.BuildingStorageRepository;
 import com.failedalgorithm.astronomics.game.items.Item;
 import com.failedalgorithm.astronomics.game.items.ItemRepository;
-import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
-import com.failedalgorithm.astronomics.game.worlds.plots.PlotRepository;
-import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
-import com.failedalgorithm.astronomics.game.worlds.zones.ZoneRepository;
 import com.failedalgorithm.astronomics.game.jobs.attached_resources.AttachedResources;
 import com.failedalgorithm.astronomics.game.jobs.attached_resources.AttachedResourcesRepository;
 import com.failedalgorithm.astronomics.game.jobs.job_queue.JobQueue;
@@ -20,12 +16,19 @@ import com.failedalgorithm.astronomics.game.jobs.responses.GenericErrorResponse;
 import com.failedalgorithm.astronomics.game.jobs.responses.JobCreatedResponse;
 import com.failedalgorithm.astronomics.game.jobs.responses.JobResponse;
 import com.failedalgorithm.astronomics.game.jobs.types.JobFactory;
+import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
+import com.failedalgorithm.astronomics.game.worlds.plots.PlotRepository;
+import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
+import com.failedalgorithm.astronomics.game.worlds.zones.ZoneRepository;
 import com.failedalgorithm.astronomics.users.User;
 import com.failedalgorithm.astronomics.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class JobService
@@ -77,14 +80,14 @@ public class JobService
         //region Grabbing involved zones and basic error checking
         //-----------------------------------
         Optional<Zone> originZoneQuery = zoneRepository.findByCoordinates(request.getJobOriginZoneX(),
-                                                                          request.getJobOriginZoneY());
+                request.getJobOriginZoneY());
         if (originZoneQuery.isEmpty())
         {
             return new GenericErrorResponse("Failed", "Origin zone not found");
         }
 
         Optional<Zone> targetZoneQuery = zoneRepository.findByCoordinates(request.getTargetZoneX(),
-                                                                          request.getTargetZoneY());
+                request.getTargetZoneY());
         if (targetZoneQuery.isEmpty())
         {
             return new GenericErrorResponse("Failed", "Target zone not found.");
@@ -95,16 +98,16 @@ public class JobService
         //region Grabbing involved plots and basic error checking
         //-----------------------------------
         Optional<Plot> originPlotQuery = plotRepository.findByXAndYAndZone(request.getJobOriginPlotX(),
-                                                                           request.getJobOriginPlotY(),
-                                                                           originZoneQuery.get());
+                request.getJobOriginPlotY(),
+                originZoneQuery.get());
         if (originPlotQuery.isEmpty())
         {
             return new GenericErrorResponse("Failed", "Origin plot not found");
         }
 
         Optional<Plot> targetPlotQuery = plotRepository.findByXAndYAndZone(request.getTargetPlotX(),
-                                                                           request.getTargetPlotY(),
-                                                                           targetZoneQuery.get());
+                request.getTargetPlotY(),
+                targetZoneQuery.get());
         if (targetPlotQuery.isEmpty())
         {
             return new GenericErrorResponse("Failed", "Target plot not found");
@@ -160,7 +163,7 @@ public class JobService
         // Every job should have some sort of item attached to it, so this should
         // be fine...
         ArrayList<AttachedResources> jobResources = new ArrayList<>();
-        for (Map.Entry<String, Integer> item: request.getResources().entrySet())
+        for (Map.Entry<String, Integer> item : request.getResources().entrySet())
         {
             AttachedResources attachedResources = new AttachedResources();
             Optional<Item> itemQuery = itemRepository.findByItemType(item.getKey());
@@ -182,19 +185,19 @@ public class JobService
         //-----------------------------------
         // Before saving the resources, we need to iterate through and make sure that
         // the target building has enough resources to complete this task
-        Iterable<BuildingStorage> originBuildingItemsStored =  buildingStorageRepository.findByBuildingId(originBuilding.getId());
+        Iterable<BuildingStorage> originBuildingItemsStored = buildingStorageRepository.findByBuildingId(originBuilding.getId());
         for (AttachedResources resource : jobResources)
         {
             boolean resourceFound = false;
-            for (BuildingStorage storedResource: originBuildingItemsStored)
+            for (BuildingStorage storedResource : originBuildingItemsStored)
             {
                 if (resource.getItem().getId() == storedResource.getItem().getId())
                 {
                     if (resource.getAmount() > storedResource.getAmount())
                     {
                         return new GenericErrorResponse("Failed",
-                                                        "Not enough present in origin building of type: "
-                                                                + resource.getItem().getItemName());
+                                "Not enough present in origin building of type: "
+                                        + resource.getItem().getItemName());
 
                     }
                     resourceFound = true;

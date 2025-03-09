@@ -10,15 +10,17 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig
+{
 
     @Autowired
     ApiKeyFilter apiKeyFilter;
 
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-         http
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
+    {
+        http
                 .addFilterBefore(apiKeyFilter, BasicAuthenticationFilter.class); // Add API Key Filter
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();

@@ -1,7 +1,5 @@
 package com.failedalgorithm.astronomics.game.buildings.requests;
 
-import com.failedalgorithm.astronomics.users.User;
-
 public class BuildingCreationRequest
 {
 

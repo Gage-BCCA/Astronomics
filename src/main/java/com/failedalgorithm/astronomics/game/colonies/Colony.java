@@ -1,9 +1,9 @@
 package com.failedalgorithm.astronomics.game.colonies;
 
 import com.failedalgorithm.astronomics.game.buildings.Building;
-import com.failedalgorithm.astronomics.users.User;
 import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
 import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
+import com.failedalgorithm.astronomics.users.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
@@ -30,7 +30,7 @@ public class Colony
 
     //region Relational Values
     //------------------------------------------
-    @OneToMany(fetch = FetchType.LAZY ,mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<Building> buildings;
 
@@ -54,7 +54,9 @@ public class Colony
     //================================================================================
     // Constructors
     //================================================================================
-    public Colony() {}
+    public Colony()
+    {
+    }
 
 
     //================================================================================

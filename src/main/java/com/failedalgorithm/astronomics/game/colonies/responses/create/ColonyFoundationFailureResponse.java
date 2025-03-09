@@ -16,7 +16,9 @@ public class ColonyFoundationFailureResponse implements ColonyFoundationResponse
     //================================================================================
     // Constructors
     //================================================================================
-    public ColonyFoundationFailureResponse () {}
+    public ColonyFoundationFailureResponse()
+    {
+    }
 
     public ColonyFoundationFailureResponse(String status, String message)
     {

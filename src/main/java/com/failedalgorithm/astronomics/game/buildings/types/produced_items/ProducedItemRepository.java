@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface ProducedItemRepository extends CrudRepository<ProducedItem, Long>
 {
     Optional<ProducedItem> findByItem(Item item);
+
     Optional<ProducedItem> findByBuildingType(String type);
 }

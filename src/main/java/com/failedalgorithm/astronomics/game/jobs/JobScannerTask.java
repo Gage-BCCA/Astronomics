@@ -22,7 +22,8 @@ public class JobScannerTask
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
     @Scheduled(fixedRate = 5000)
-    public void reportCurrentTime() {
+    public void reportCurrentTime()
+    {
         Iterable<JobQueue> jobs = repository.findAll();
         int counter = 0;
         for (JobQueue job : jobs)

@@ -1,13 +1,13 @@
 package com.failedalgorithm.astronomics.users.responses;
 
-import org.apache.catalina.User;
-
 public class GenericSuccessResponse implements UserResponse
 {
     private String status;
     private String message;
 
-    public GenericSuccessResponse() {}
+    public GenericSuccessResponse()
+    {
+    }
 
     public GenericSuccessResponse(String status, String message)
     {

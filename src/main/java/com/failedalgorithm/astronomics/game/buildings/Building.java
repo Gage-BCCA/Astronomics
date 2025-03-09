@@ -2,12 +2,12 @@ package com.failedalgorithm.astronomics.game.buildings;
 
 
 import com.failedalgorithm.astronomics.game.buildings.building_storage.BuildingStorage;
+import com.failedalgorithm.astronomics.game.colonies.Colony;
 import com.failedalgorithm.astronomics.game.items.Item;
-import com.failedalgorithm.astronomics.users.User;
 import com.failedalgorithm.astronomics.game.worlds.plots.Plot;
 import com.failedalgorithm.astronomics.game.worlds.zones.Zone;
+import com.failedalgorithm.astronomics.users.User;
 import jakarta.persistence.*;
-import com.failedalgorithm.astronomics.game.colonies.Colony;
 
 import java.util.Date;
 import java.util.Set;

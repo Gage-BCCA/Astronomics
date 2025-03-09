@@ -15,7 +15,9 @@ public class ColonyUpdateSuccessResponse implements ColonyUpdateResponse
     //================================================================================
     // Constructors
     //================================================================================
-    public ColonyUpdateSuccessResponse() {}
+    public ColonyUpdateSuccessResponse()
+    {
+    }
 
 
     //================================================================================

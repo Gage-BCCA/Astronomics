@@ -23,7 +23,9 @@ public class MoveResourcesRequest extends JobCreationRequest
     //================================================================================
     // Constructors
     //================================================================================
-    public MoveResourcesRequest() {}
+    public MoveResourcesRequest()
+    {
+    }
 
 
     //================================================================================
